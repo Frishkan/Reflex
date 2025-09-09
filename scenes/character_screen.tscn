@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpw3v3vvjgm73"]
+
+[ext_resource type="Script" path="res://scripts/character_choosing.gd" id="1_lxnh8"]
+[ext_resource type="Texture2D" uid="uid://bcw2gvnd782fd" path="res://textures/character_1.png" id="2_h1rcw"]
+
+[sub_resource type="GDScript" id="GDScript_j5j1n"]
+
+[sub_resource type="Gradient" id="Gradient_ds22t"]
+colors = PackedColorArray(0.439216, 0.439216, 0.439216, 0.513726, 0.439216, 0.439216, 0.439216, 0.513726)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0plwr"]
+gradient = SubResource("Gradient_ds22t")
+width = 250
+height = 50
+fill_to = Vector2(1, 0.126904)
+
+[sub_resource type="Gradient" id="Gradient_57rcm"]
+colors = PackedColorArray(0.74902, 0, 0, 1, 0.74902, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_te6ir"]
+gradient = SubResource("Gradient_57rcm")
+width = 250
+height = 50
+
+[node name="character_screen" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_lxnh8")
+
+[node name="character1" type="Button" parent="."]
+offset_left = 49.0
+offset_top = 41.0
+offset_right = 256.0
+offset_bottom = 245.0
+scale = Vector2(0.8, 0.8)
+icon = ExtResource("2_h1rcw")
+
+[node name="character2" type="Button" parent="."]
+offset_left = 315.0
+offset_top = 40.0
+offset_right = 435.0
+offset_bottom = 157.0
+
+[node name="character3" type="Button" parent="."]
+offset_left = 592.0
+offset_top = 38.0
+offset_right = 712.0
+offset_bottom = 155.0
+
+[node name="character4" type="Button" parent="."]
+offset_left = 869.0
+offset_top = 40.0
+offset_right = 989.0
+offset_bottom = 157.0
+
+[node name="confirm" type="Button" parent="."]
+visible = false
+offset_left = 938.0
+offset_top = 503.0
+offset_right = 1058.0
+offset_bottom = 556.0
+script = SubResource("GDScript_j5j1n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 324)
+
+[node name="CharDesc" type="Label" parent="."]
+offset_left = 67.0
+offset_top = 307.0
+offset_right = 778.0
+offset_bottom = 625.0
+
+[node name="CharHealth" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 240.0
+offset_right = 104.0
+offset_bottom = 280.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="CharHealth"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 250.0
+offset_bottom = 52.0
+value = 100.0
+rounded = true
+texture_under = SubResource("GradientTexture2D_0plwr")
+texture_progress = SubResource("GradientTexture2D_te6ir")
+
+[node name="HealthNumber" type="Label" parent="CharHealth"]
+z_index = 1
+layout_mode = 0
+offset_left = 106.0
+offset_top = 16.0
+offset_right = 146.0
+offset_bottom = 39.0
+
+[connection signal="pressed" from="character1" to="." method="_on_character_1_pressed"]
+[connection signal="pressed" from="character2" to="." method="_on_character_2_pressed"]
+[connection signal="pressed" from="character3" to="." method="_on_character_3_pressed"]
+[connection signal="pressed" from="character4" to="." method="_on_character_4_pressed"]
+[connection signal="pressed" from="confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="confirm" to="confirm" method="_on_pressed"]

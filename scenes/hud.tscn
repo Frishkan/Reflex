@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5jjgoky4qx46"]
+[gd_scene load_steps=9 format=3 uid="uid://b5jjgoky4qx46"]
 
 [ext_resource type="Script" path="res://scripts/character_screen.gd" id="1_5vjsl"]
 [ext_resource type="Texture2D" uid="uid://br0ctp0iv3j74" path="res://textures/deck_button.png" id="2_lrc75"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="3_s06af"]
+[ext_resource type="PackedScene" uid="uid://d3oa5axvtgx1k" path="res://scenes/hand.tscn" id="4_u08ry"]
 
 [sub_resource type="Gradient" id="Gradient_umbgb"]
 colors = PackedColorArray(0.439216, 0.439216, 0.439216, 0.513726, 0.439216, 0.439216, 0.439216, 0.513726)
@@ -76,6 +77,17 @@ toggle_mode = true
 icon = ExtResource("2_lrc75")
 flat = true
 
+[node name="CardsToDraw" type="Label" parent="Deck"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DiscardedCardsButton" type="Button" parent="Deck"]
+offset_left = 1045.0
+offset_top = 548.0
+offset_right = 1131.0
+offset_bottom = 590.0
+text = "Discarded"
+
 [node name="Exit" type="Button" parent="."]
 offset_left = 14.0
 offset_top = 14.0
@@ -95,6 +107,8 @@ script = ExtResource("3_s06af")
 
 [node name="Items" type="Node2D" parent="Inventory"]
 unique_name_in_owner = true
+
+[node name="Hand" parent="." instance=ExtResource("4_u08ry")]
 
 [connection signal="pressed" from="Deck/DeckButton" to="Inventory" method="_on_deck_button_pressed"]
 [connection signal="toggled" from="Deck/DeckButton" to="." method="_on_deck_button_toggled"]

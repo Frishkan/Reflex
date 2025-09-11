@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpmorysk7inqv"]
+[gd_scene load_steps=6 format=3 uid="uid://dpmorysk7inqv"]
 
+[ext_resource type="Script" path="res://scripts/hand_card.gd" id="1_d8xir"]
 [ext_resource type="Texture2D" uid="uid://cognf5iqwtyua" path="res://textures/knife_card.png" id="1_o8eau"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8so6"]
@@ -14,7 +15,8 @@ shadow_size = 0
 font_size = 8
 shadow_size = 0
 
-[node name="Card" type="Area2D"]
+[node name="HandCard" type="Area2D"]
+script = ExtResource("1_d8xir")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o8eau")

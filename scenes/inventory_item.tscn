@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6ddc8xodudbo"]
+
+[ext_resource type="Texture2D" uid="uid://dkhqunat0fsh" path="res://icon.svg" id="1_v0woo"]
+[ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_yfpbq"]
+
+[node name="InventoryItem" type="Sprite2D"]
+texture = ExtResource("1_v0woo")
+script = ExtResource("1_yfpbq")

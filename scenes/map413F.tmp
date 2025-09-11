@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxrrxbjwb4cbq"]
+
+[ext_resource type="Script" path="res://scripts/map_generator.gd" id="1_156ex"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_x60lw"]
+
+[node name="map" type="Node2D"]
+visible = false
+script = ExtResource("1_x60lw")
+
+[node name="map_generator" type="Node2D" parent="."]
+script = ExtResource("1_156ex")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Line" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+
+[node name="Rooms" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 323)
+zoom = Vector2(4, 4)

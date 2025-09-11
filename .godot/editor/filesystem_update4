@@ -13,3 +13,4 @@ res://scenes/inventory_item.tscn
 res://scenes/map_room.tscn
 res://scenes/map.tscn
 res://scenes/enemy_assembled.tscn
+res://scripts/map_room.gd

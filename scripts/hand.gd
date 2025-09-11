@@ -10,6 +10,7 @@ func _ready() -> void:
 	
 func _card_picked_up(card: Card) :
 	card.position = Vector2(cards.get_child_count() * 50 + 25, 85)
+	card.rotation = 0 ## placeholder (i'm stupiditto)
 	_spawn_card(card)
 
 func _spawn_card(card : Card) :

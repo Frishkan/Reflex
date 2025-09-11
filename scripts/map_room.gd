@@ -7,7 +7,7 @@ const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2(1, 1)],
 	Room.Type.MONSTER: [preload("res://textures/monster.png"), Vector2(0.9, 0.9)],
 	Room.Type.TREASURE: [preload("res://textures/Chalice.png"), Vector2(2.5, 2.5)],
-	Room.Type.CAMPFIRE: [preload("res://icon.svg"), Vector2(1, 1)],
+	Room.Type.CAMPFIRE: [preload("res://textures/Camp.png"), Vector2(1, 1)],
 	Room.Type.SHOP: [preload("res://textures/Shop.png"), Vector2(1.5, 1.5)],
 	Room.Type.ELITE: [preload("res://textures/bitmap.png"), Vector2(1.8, 1.8)],
 	Room.Type.BOSS: [preload("res://textures/Boss.png"), Vector2(3, 3)]

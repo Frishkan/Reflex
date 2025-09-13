@@ -109,7 +109,15 @@ script = ExtResource("3_s06af")
 unique_name_in_owner = true
 
 [node name="Hand" parent="." instance=ExtResource("4_u08ry")]
+position = Vector2(147, 597)
+
+[node name="Button" type="Button" parent="Hand"]
+offset_left = -110.0
+offset_top = -88.0
+offset_right = -73.0
+offset_bottom = -52.0
 
 [connection signal="pressed" from="Deck/DeckButton" to="Inventory" method="_on_deck_button_pressed"]
 [connection signal="toggled" from="Deck/DeckButton" to="." method="_on_deck_button_toggled"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Hand/Button" to="Hand" method="_on_button_pressed"]

@@ -5,4 +5,4 @@ enum Name {KNIFE, SKILLFULL_BARRAGE}
 
 var name : Name
 var position : Vector2
-var rotation : int
+var index : int

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b072jl1qt0pgo"]
+[gd_scene load_steps=5 format=3 uid="uid://b072jl1qt0pgo"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_m0x67"]
 [ext_resource type="PackedScene" uid="uid://b5jjgoky4qx46" path="res://scenes/hud.tscn" id="1_n05ew"]
 [ext_resource type="PackedScene" uid="uid://bxrrxbjwb4cbq" path="res://scenes/map.tscn" id="3_cn53b"]
+[ext_resource type="PackedScene" uid="uid://bv57y0xxkner8" path="res://scenes/fight_scene.tscn" id="4_sihox"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_m0x67")
@@ -11,3 +12,5 @@ script = ExtResource("1_m0x67")
 position = Vector2(-2, 1)
 
 [node name="map" parent="." instance=ExtResource("3_cn53b")]
+
+[node name="FightScene" parent="." instance=ExtResource("4_sihox")]

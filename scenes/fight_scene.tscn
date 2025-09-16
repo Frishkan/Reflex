@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv57y0xxkner8"]
+
+[ext_resource type="Script" path="res://scripts/enemy_spawn.gd" id="1_klvbb"]
+
+[node name="FightScene" type="Node2D"]
+script = ExtResource("1_klvbb")
+
+[node name="Enemies" type="Node2D" parent="."]

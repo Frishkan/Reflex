@@ -1,5 +1,5 @@
-res://scenes/hud.tscn
-res://scripts/hand_card.gd
 res://scenes/game.tscn
-res://scenes/hand.tscn
-res://scenes/hand_card.tscn
+res://scenes/fight_scene.tscn
+res://scenes/enemy_assembled.tscn
+res://scripts/enemy_spawn.gd
+res://custom_resources/enemy.gd

@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://crrxgi28nfube"]
+[gd_scene load_steps=3 format=3 uid="uid://crrxgi28nfube"]
+
+[ext_resource type="Script" path="res://scripts/intents.gd" id="1_vrgys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_on74u"]
 
 [node name="EnemyAssembled" type="Node2D"]
+
+[node name="Intents" type="Node2D" parent="."]
+script = ExtResource("1_vrgys")
+
+[node name="Sprite2D" type="Sprite2D" parent="Intents"]
+
+[node name="IntentSprite2D" type="Sprite2D" parent="Intents"]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+root_node = NodePath("../..")
+
+[node name="EnemyHelathBar" type="ProgressBar" parent="Visuals"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="EnemyHealthNumber" type="Label" parent="Visuals"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_on74u")

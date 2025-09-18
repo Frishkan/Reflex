@@ -1,5 +1,8 @@
 res://scenes/game.tscn
 res://scenes/fight_scene.tscn
 res://scenes/enemy_assembled.tscn
+res://scenes/enemy_assembled.gd
 res://scripts/enemy_spawn.gd
+res://scripts/enemy_assembled.gd
 res://custom_resources/enemy.gd
+res://scenes/hud.tscn

@@ -1,49 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5jjgoky4qx46"]
+[gd_scene load_steps=5 format=3 uid="uid://b5jjgoky4qx46"]
 
 [ext_resource type="Script" path="res://scripts/character_screen.gd" id="1_5vjsl"]
 [ext_resource type="Texture2D" uid="uid://br0ctp0iv3j74" path="res://textures/deck_button.png" id="2_lrc75"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="3_s06af"]
 [ext_resource type="PackedScene" uid="uid://d3oa5axvtgx1k" path="res://scenes/hand.tscn" id="4_u08ry"]
 
-[sub_resource type="Gradient" id="Gradient_umbgb"]
-colors = PackedColorArray(0.439216, 0.439216, 0.439216, 0.513726, 0.439216, 0.439216, 0.439216, 0.513726)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_d63dw"]
-gradient = SubResource("Gradient_umbgb")
-width = 250
-height = 50
-fill_to = Vector2(1, 0.126904)
-
-[sub_resource type="Gradient" id="Gradient_6avgx"]
-colors = PackedColorArray(0.74902, 0, 0, 1, 0.74902, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ou03s"]
-gradient = SubResource("Gradient_6avgx")
-width = 250
-height = 50
-
 [node name="hud" type="Node2D"]
 z_index = 1
 script = ExtResource("1_5vjsl")
-
-[node name="Health" type="Node2D" parent="."]
-position = Vector2(158, 429)
-
-[node name="HealthBar" type="TextureProgressBar" parent="Health"]
-offset_top = 2.0
-offset_right = 250.0
-offset_bottom = 52.0
-value = 100.0
-rounded = true
-texture_under = SubResource("GradientTexture2D_d63dw")
-texture_progress = SubResource("GradientTexture2D_ou03s")
-
-[node name="HealthNumber" type="Label" parent="Health"]
-z_index = 1
-offset_left = 106.0
-offset_top = 16.0
-offset_right = 146.0
-offset_bottom = 39.0
 
 [node name="Deck" type="Node2D" parent="."]
 z_index = 1

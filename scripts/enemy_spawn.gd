@@ -1,5 +1,8 @@
 extends Node2D
 
+const ENEMY_ASSEMBLED = preload("res://scenes/enemy_assembled.tscn")
+@onready var enemies_node : Node2D = %Enemies
+
 @export var attacker_weight := 8.0
 @export var tank_weight := 2.5
 @export var buffer_weight := 2.0
@@ -17,10 +20,16 @@ var enemies : Array
 
 
 func _ready() -> void:
-	get_enemies_array()
+	spawn_enemy()
 
-func spawn_enemy(enemies : Array) :
-	pass
+func spawn_enemy() :
+	var enemy_type_array : Array = get_enemies_array()
+	
+	for enemy_type in enemy_type_array :
+		var enemy_instance = ENEMY_ASSEMBLED.instantiate() as EnemyAssembled
+		enemies_node.add_child(enemy_instance)
+		enemy_instance.index = enemy_type_array.find(enemy_type)
+		enemy_instance.set_enemy(enemy_type)
 
 func get_enemies_array() -> Array :
 	setup_weights()

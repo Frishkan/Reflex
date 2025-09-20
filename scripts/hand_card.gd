@@ -9,6 +9,7 @@ extends Control
 var card : Card : set = set_card
 var index : int
 var hand_size := 800
+var hand_card_name : Card.Name
 
 
 const ICONS := {
@@ -27,6 +28,7 @@ func set_card(new_card: Card) :
 	short_desc.text = ICONS[card.name][3]
 	self.scale = ICONS[card.name][1]
 	index = card.index
+	hand_card_name = card.name
 
 
 func _on_mouse_entered() -> void:

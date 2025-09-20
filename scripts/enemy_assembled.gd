@@ -8,6 +8,7 @@ extends Node2D
 
 
 var index : int
+var health : int
 
 const ICONS := {
 	Enemy.Type.ATTACKER1: [preload("res://icon.svg"), Vector2(1, 1), 40],
@@ -31,3 +32,11 @@ func set_enemy(new_enemy_type: Enemy.Type) :
 func update_health(new_health : int) :
 	enemy_health_bar.value = new_health
 	enemy_health_number.text = str(new_health)
+	health = new_health
+	print("current health : ", health)
+	if health <= 0 :
+		queue_free()
+
+func damage(value : int) :
+	update_health(health - value)
+	

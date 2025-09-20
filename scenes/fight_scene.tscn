@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv57y0xxkner8"]
+[gd_scene load_steps=6 format=3 uid="uid://bv57y0xxkner8"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawn.gd" id="1_klvbb"]
 [ext_resource type="Texture2D" uid="uid://bcw2gvnd782fd" path="res://textures/character_1.png" id="2_4p8rm"]
+[ext_resource type="Script" path="res://scripts/qt_es.gd" id="3_jmeni"]
 
 [sub_resource type="Gradient" id="Gradient_fvj2n"]
 offsets = PackedFloat32Array(1)
@@ -42,3 +43,7 @@ offset_right = 29.0
 offset_bottom = 41.0
 text = "80"
 metadata/_edit_use_anchors_ = true
+
+[node name="QTEs" type="Node2D" parent="."]
+position = Vector2(570, 122)
+script = ExtResource("3_jmeni")

@@ -6,3 +6,11 @@ res://scenes/hand_card.tscn
 res://scenes/hand.tscn
 res://scripts/hand_card.gd
 res://scripts/hand.gd
+res://scripts/enemy_spawn.gd
+res://scripts/qt_es.gd
+res://scenes/knife_qte.tscn
+res://scripts/knife_qte.gd
+res://scenes/guitar_hero_qte.tscn
+res://scenes/knife_hit.tscn
+res://scripts/knife_hit.gd
+res://scripts/enemy_assembled.gd

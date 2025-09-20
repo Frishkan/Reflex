@@ -9,6 +9,11 @@ const ENEMY_ASSEMBLED = preload("res://scenes/enemy_assembled.tscn")
 @export var buffer_weight := 2.0
 @export var debuffer_weight := 4.0
 
+const FUNCTIONS := {
+	Card.Name.KNIFE: ["knife", [2, 5, 300, 0, false]], ## QTE type, [dmg per hit, max hits, speed, dmg penalty for each miss]
+	Card.Name.SKILLFULL_BARRAGE: ["guitar_hero", [3, 10, 600, 2, false]],
+}
+
 var rand_weights = {
 	Enemy.Type.ATTACKER1: 0.0,
 	Enemy.Type.TANK1: 0.0,
@@ -21,6 +26,7 @@ var enemies : Array
 
 
 func _ready() -> void:
+	Events.card_played.connect(_card_played)
 	spawn_enemy()
 
 func spawn_enemy() :
@@ -81,3 +87,11 @@ func setup_weights() -> void :
 	rand_weights[Enemy.Type.DEBUFFER1] = attacker_weight + tank_weight + buffer_weight + debuffer_weight
 	
 	rand_total_weight = rand_weights[Enemy.Type.DEBUFFER1]
+
+func _card_played(hand_card : HandCard) :
+	$QTEs.call(FUNCTIONS[hand_card.hand_card_name][0], FUNCTIONS[hand_card.hand_card_name][1])
+
+func output(result : int, heal : bool) :
+	if !heal : ## damaging (accessing monster hp)
+		enemies_node.get_children()[enemies_node.get_children().size() - 1].damage(result)
+		print(result, " in output")

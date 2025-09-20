@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8dt7s8dhowyn"]
+
+[ext_resource type="Script" path="res://scripts/knife_hit.gd" id="1_xekst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb7th"]
+size = Vector2(20, 60)
+
+[sub_resource type="Gradient" id="Gradient_ncsy5"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h5ua5"]
+gradient = SubResource("Gradient_ncsy5")
+width = 20
+height = 60
+
+[node name="KnifeHit" type="CharacterBody2D"]
+script = ExtResource("1_xekst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hb7th")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_h5ua5")

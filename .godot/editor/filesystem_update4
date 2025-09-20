@@ -14,3 +14,11 @@ res://scenes/guitar_hero_qte.tscn
 res://scenes/knife_hit.tscn
 res://scripts/knife_hit.gd
 res://scripts/enemy_assembled.gd
+res://scripts/character_screen.gd
+res://scripts/game.gd
+res://scenes/character_screen.tscn
+res://scripts/character_choosing.gd
+res://scenes/start_screen.tscn
+res://scripts/Singleton.gd
+res://scripts/map_generator.gd
+res://scripts/events.gd

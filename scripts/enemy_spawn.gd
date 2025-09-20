@@ -9,9 +9,10 @@ const ENEMY_ASSEMBLED = preload("res://scenes/enemy_assembled.tscn")
 @export var buffer_weight := 2.0
 @export var debuffer_weight := 4.0
 
+
 const FUNCTIONS := {
-	Card.Name.KNIFE: ["knife", [2, 5, 300, 0, false]], ## QTE type, [dmg per hit, max hits, speed, dmg penalty for each miss]
-	Card.Name.SKILLFULL_BARRAGE: ["guitar_hero", [3, 10, 600, 2, false]],
+	Card.Name.KNIFE: ["knife", [2, 5, 300, 0, false, -1]], ## QTE type, [dmg per hit, max hits, speed, dmg penalty for each miss, hero recieving?, multiplier : damage(-); heal(+)]
+	Card.Name.SKILLFULL_BARRAGE: ["guitar_hero", [3, 10, 600, 2, false, -1]],
 }
 
 var rand_weights = {
@@ -43,7 +44,6 @@ func get_enemies_array() -> Array :
 	var enemy_count = randi_range(1, 3)
 	for enems in enemy_count :
 		var enemy : Enemy.Type = roll_enemy_type()
-		print(enemy, " <- the type itself")
 		enemies.append(enemy)
 	
 	return enemies
@@ -54,7 +54,6 @@ func roll_enemy_type() -> Enemy.Type :
 	for type : Enemy.Type in rand_weights :
 		if rand_weights[type] > roll :
 			var enemy_type_int : int = type
-			print(enemy_type_int, " <- enemy type int")
 			return roll_enemy_variant(enemy_type_int)
 	
 	return Enemy.Type.ATTACKER1
@@ -63,21 +62,15 @@ func roll_enemy_variant(enemy_type_int : int) -> Enemy.Type:
 	var roll := randi_range(1, 5)
 	match enemy_type_int :
 		1 :
-			print(enemy_type_int)
 			return Enemy.Type.ATTACKER1
 		2 :
-			print(enemy_type_int)
 			return Enemy.Type.TANK1
 		3 :
-			print(enemy_type_int)
 			return Enemy.Type.BUFFER1
 		4 :
-			print(enemy_type_int)
 			return Enemy.Type.DEBUFFER1
 		_ : 
-			print(enemy_type_int, " didnt detect as number")
 			return Enemy.Type.DUMMY
-	return Enemy.Type.DUMMY
 
 
 func setup_weights() -> void :
@@ -91,7 +84,8 @@ func setup_weights() -> void :
 func _card_played(hand_card : HandCard) :
 	$QTEs.call(FUNCTIONS[hand_card.hand_card_name][0], FUNCTIONS[hand_card.hand_card_name][1])
 
-func output(result : int, heal : bool) :
-	if !heal : ## damaging (accessing monster hp)
-		enemies_node.get_children()[enemies_node.get_children().size() - 1].damage(result)
-		print(result, " in output")
+func output(result : int, hero : bool) :
+	if !hero : ## damaging (accessing monster hp)
+		enemies_node.get_children()[enemies_node.get_children().size() - 1].change_health(result)
+	else :
+		Singleton.health += result

@@ -36,9 +36,8 @@ func generate_map() -> Array[Array]:
 	_setup_random_room_weights()
 	_setup_room_types()
 	
-	
-	
-	var i := 0
+	""" ## test print
+	 var i := 0
 	for floor in map_data:
 		print("floor %s" % i)
 		var used_rooms_floor = floor.filter(
@@ -50,7 +49,7 @@ func generate_map() -> Array[Array]:
 			used_rooms_columns.append(room.type)
 		print(used_rooms_columns)
 		i += 1
-	
+	"""
 	return map_data
 
 func _ready() -> void:

@@ -1,6 +1,7 @@
 extends Node2D
 
-var character
+var character : int
+
 signal character_choosen
 
 func _on_character_1_pressed() -> void:
@@ -42,6 +43,7 @@ func _on_confirm_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 func set_health(health : int) -> void:
+	Singleton.hero_health = health
 	$CharHealth/HealthBar.max_value = health
 	$CharHealth/HealthBar.value = health
 	$CharHealth/HealthNumber.text = str($CharHealth/HealthBar.value) + " / " + str($CharHealth/HealthBar.max_value)

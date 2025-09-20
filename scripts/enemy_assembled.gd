@@ -12,7 +12,7 @@ var health : int
 
 const ICONS := {
 	Enemy.Type.ATTACKER1: [preload("res://icon.svg"), Vector2(1, 1), 40],
-	Enemy.Type.TANK1: [preload("res://icon.svg"), Vector2(1, 1), 200],
+	Enemy.Type.TANK1: [preload("res://icon.svg"), Vector2(1, 1), 100],
 	Enemy.Type.BUFFER1: [preload("res://icon.svg"), Vector2(1, 1), 50],
 	Enemy.Type.DEBUFFER1: [preload("res://icon.svg"), Vector2(1, 1), 50],
 	Enemy.Type.ELITE1: [preload("res://icon.svg"), Vector2(1, 1), 250],
@@ -33,10 +33,8 @@ func update_health(new_health : int) :
 	enemy_health_bar.value = new_health
 	enemy_health_number.text = str(new_health)
 	health = new_health
-	print("current health : ", health)
 	if health <= 0 :
 		queue_free()
 
-func damage(value : int) :
-	update_health(health - value)
-	
+func change_health(value : int) :
+	update_health(health + value)

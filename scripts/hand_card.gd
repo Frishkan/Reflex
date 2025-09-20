@@ -45,7 +45,7 @@ func _on_mouse_exited() -> void:
 
 
 func _on_input_event(event: InputEvent) -> void:
-	if event.is_action_pressed("left_mouse") : 
+	if event.is_action_pressed("left_mouse") && !get_parent().get_parent().get_parent().get_parent().get_node("FightScene").get_node("QTEs").qte_active : 
 		Events.card_played.emit(self)
 		queue_free()
 

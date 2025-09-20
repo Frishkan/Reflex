@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://scripts/events.gd"
+Singleton="*res://scripts/Singleton.gd"
 
 [display]
 

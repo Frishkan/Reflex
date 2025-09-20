@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpw3v3vvjgm73"]
+[gd_scene load_steps=7 format=3 uid="uid://bpw3v3vvjgm73"]
 
 [ext_resource type="Script" path="res://scripts/character_choosing.gd" id="1_lxnh8"]
 [ext_resource type="Texture2D" uid="uid://bcw2gvnd782fd" path="res://textures/character_1.png" id="2_h1rcw"]
-
-[sub_resource type="GDScript" id="GDScript_j5j1n"]
 
 [sub_resource type="Gradient" id="Gradient_ds22t"]
 colors = PackedColorArray(0.439216, 0.439216, 0.439216, 0.513726, 0.439216, 0.439216, 0.439216, 0.513726)
@@ -58,7 +56,6 @@ offset_left = 938.0
 offset_top = 503.0
 offset_right = 1058.0
 offset_bottom = 556.0
-script = SubResource("GDScript_j5j1n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 324)

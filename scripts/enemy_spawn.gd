@@ -1,3 +1,4 @@
+class_name FightScene
 extends Node2D
 
 const ENEMY_ASSEMBLED = preload("res://scenes/enemy_assembled.tscn")

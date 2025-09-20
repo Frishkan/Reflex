@@ -1,8 +1,8 @@
 res://scenes/game.tscn
 res://scenes/fight_scene.tscn
 res://scenes/enemy_assembled.tscn
-res://scenes/enemy_assembled.gd
-res://scripts/enemy_spawn.gd
-res://scripts/enemy_assembled.gd
-res://custom_resources/enemy.gd
 res://scenes/hud.tscn
+res://scenes/hand_card.tscn
+res://scenes/hand.tscn
+res://scripts/hand_card.gd
+res://scripts/hand.gd

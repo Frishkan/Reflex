@@ -73,7 +73,7 @@ script = ExtResource("3_s06af")
 unique_name_in_owner = true
 
 [node name="Hand" parent="." instance=ExtResource("4_u08ry")]
-position = Vector2(147, 597)
+position = Vector2(147, 524)
 
 [node name="Button" type="Button" parent="Hand"]
 offset_left = -110.0

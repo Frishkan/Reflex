@@ -19,7 +19,7 @@ script = ExtResource("1_klvbb")
 unique_name_in_owner = true
 
 [node name="Hero" type="Node2D" parent="."]
-position = Vector2(153, 380)
+position = Vector2(215, 458)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hero"]
 position = Vector2(0, -90)

@@ -12,7 +12,7 @@ const ENEMY_ASSEMBLED = preload("res://scenes/enemy_assembled.tscn")
 
 const FUNCTIONS := {
 	Card.Name.KNIFE: ["knife", [2, 5, 300, 0, false, -1]], ## QTE type, [dmg per hit, max hits, speed, dmg penalty for each miss, hero recieving?, multiplier : damage(-); heal(+)]
-	Card.Name.SKILLFULL_BARRAGE: ["guitar_hero", [3, 10, 600, 2, false, -1]],
+	Card.Name.SKILLFULL_BARRAGE: ["guitar_hero", [3, 10, 400, 2, false, -1]],
 }
 
 var rand_weights = {
@@ -33,11 +33,11 @@ func _ready() -> void:
 func spawn_enemy() :
 	var enemy_type_array : Array = get_enemies_array()
 	
-	for enemy_type in enemy_type_array :
+	for enemy_index in enemy_type_array.size() :
 		var enemy_instance = ENEMY_ASSEMBLED.instantiate() as EnemyAssembled
 		enemies_node.add_child(enemy_instance)
-		enemy_instance.index = enemy_type_array.find(enemy_type)
-		enemy_instance.set_enemy(enemy_type)
+		enemy_instance.index = enemy_index
+		enemy_instance.set_enemy(enemy_type_array[enemy_index - 1])
 
 func get_enemies_array() -> Array :
 	setup_weights()

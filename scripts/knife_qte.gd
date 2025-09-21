@@ -3,6 +3,7 @@ extends Node2D
 const HIT = preload("res://scenes/knife_hit.tscn")
 var counter := 0
 var hits := 0
+var misses := 0
 var global_card_stats : Array
 
 
@@ -32,6 +33,6 @@ func _on_hit_area_body_exited(body: CharacterBody2D) -> void:
 
 func _on_hits_container_child_exiting_tree(_node: Node) -> void:
 	if $HitsContainer.get_child_count() <= 1 && counter == global_card_stats[1]:
-		get_parent().get_parent().output((hits * global_card_stats[0] - (global_card_stats[1] - hits) * global_card_stats[3]) * global_card_stats[5], global_card_stats[4])
+		get_parent().get_parent().output((hits * global_card_stats[0] - (global_card_stats[1] - hits + misses) * global_card_stats[3]) * global_card_stats[5], global_card_stats[4])
 		get_parent().qte_active = false
 		queue_free()

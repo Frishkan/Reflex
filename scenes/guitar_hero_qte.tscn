@@ -1,3 +1,118 @@
-[gd_scene format=3 uid="uid://brw85t6dgtf8i"]
+[gd_scene load_steps=6 format=3 uid="uid://brw85t6dgtf8i"]
+
+[ext_resource type="Script" path="res://scripts/guitar_hero_qte.gd" id="1_wrcfa"]
+
+[sub_resource type="Gradient" id="Gradient_qwyxr"]
+colors = PackedColorArray(0.62597, 0.0593639, 0.773759, 1, 0.792571, 0.442062, 0.155225, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ki7bw"]
+gradient = SubResource("Gradient_qwyxr")
+width = 400
+height = 400
+fill_to = Vector2(0, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fi23l"]
+size = Vector2(80, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_230h7"]
 
 [node name="GuitarHeroQTE" type="Node2D"]
+script = ExtResource("1_wrcfa")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(200, 200)
+texture = SubResource("GradientTexture2D_ki7bw")
+
+[node name="InputAreaA" type="Area2D" parent="."]
+position = Vector2(50, 370)
+
+[node name="InputAreaCircles" type="Sprite2D" parent="InputAreaA"]
+modulate = Color(1, 1, 1, 0.2)
+texture = SubResource("PlaceholderTexture2D_fi23l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreaA"]
+visible = false
+scale = Vector2(4, 3)
+shape = SubResource("RectangleShape2D_230h7")
+
+[node name="Label" type="Label" parent="InputAreaA"]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+text = "A"
+horizontal_alignment = 1
+
+[node name="InputAreaS" type="Area2D" parent="."]
+position = Vector2(150, 370)
+
+[node name="InputAreaCircles" type="Sprite2D" parent="InputAreaS"]
+modulate = Color(1, 1, 1, 0.2)
+texture = SubResource("PlaceholderTexture2D_fi23l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreaS"]
+visible = false
+scale = Vector2(4, 3)
+shape = SubResource("RectangleShape2D_230h7")
+
+[node name="Label" type="Label" parent="InputAreaS"]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+text = "S"
+horizontal_alignment = 1
+
+[node name="InputAreaD" type="Area2D" parent="."]
+position = Vector2(250, 370)
+
+[node name="InputAreaCircles" type="Sprite2D" parent="InputAreaD"]
+modulate = Color(1, 1, 1, 0.2)
+texture = SubResource("PlaceholderTexture2D_fi23l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreaD"]
+visible = false
+scale = Vector2(4, 3)
+shape = SubResource("RectangleShape2D_230h7")
+
+[node name="Label" type="Label" parent="InputAreaD"]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+text = "D"
+horizontal_alignment = 1
+
+[node name="InputAreaF" type="Area2D" parent="."]
+position = Vector2(350, 370)
+
+[node name="InputAreaCircles" type="Sprite2D" parent="InputAreaF"]
+modulate = Color(1, 1, 1, 0.2)
+texture = SubResource("PlaceholderTexture2D_fi23l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputAreaF"]
+visible = false
+scale = Vector2(4, 3)
+shape = SubResource("RectangleShape2D_230h7")
+
+[node name="Label" type="Label" parent="InputAreaF"]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+text = "F"
+horizontal_alignment = 1
+
+[node name="HitsContainer" type="Node2D" parent="."]
+
+[node name="Border" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="InputAreaA" to="." method="_on_input_area_a_body_entered"]
+[connection signal="body_exited" from="InputAreaA" to="." method="_on_input_area_a_body_exited"]
+[connection signal="body_entered" from="InputAreaS" to="." method="_on_input_area_s_body_entered"]
+[connection signal="body_exited" from="InputAreaS" to="." method="_on_input_area_s_body_exited"]
+[connection signal="body_entered" from="InputAreaD" to="." method="_on_input_area_d_body_entered"]
+[connection signal="body_exited" from="InputAreaD" to="." method="_on_input_area_d_body_exited"]
+[connection signal="body_entered" from="InputAreaF" to="." method="_on_input_area_f_body_entered"]
+[connection signal="body_exited" from="InputAreaF" to="." method="_on_input_area_f_body_exited"]
+[connection signal="child_exiting_tree" from="HitsContainer" to="." method="_on_hits_container_child_exiting_tree"]

@@ -5,12 +5,12 @@ signal selected(room : Room)
 
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2(1, 1)],
-	Room.Type.MONSTER: [preload("res://textures/monster.png"), Vector2(0.9, 0.9)],
-	Room.Type.TREASURE: [preload("res://textures/Chalice.png"), Vector2(2.5, 2.5)],
-	Room.Type.CAMPFIRE: [preload("res://textures/Camp.png"), Vector2(2.5, 2.5)],
-	Room.Type.SHOP: [preload("res://textures/Shop.png"), Vector2(1.5, 1.5)],
-	Room.Type.ELITE: [preload("res://textures/bitmap.png"), Vector2(1.8, 1.8)],
-	Room.Type.BOSS: [preload("res://textures/Boss.png"), Vector2(3, 3)]
+	Room.Type.MONSTER: [preload("res://textures/monster.png"), Vector2(1, 1), Vector2(0.2, 0.2)],
+	Room.Type.TREASURE: [preload("res://textures/Chalice.png"), Vector2(2.5, 2.5), Vector2(0.1, 0.1)],
+	Room.Type.CAMPFIRE: [preload("res://textures/Camp.png"), Vector2(2.5, 2.5), Vector2(0.1, 0.1)],
+	Room.Type.SHOP: [preload("res://textures/Shop.png"), Vector2(1.5, 1.5), Vector2(0.1, 0.1)],
+	Room.Type.ELITE: [preload("res://textures/bitmap.png"), Vector2(1.8, 1.8), Vector2(0.1, 0.1)],
+	Room.Type.BOSS: [preload("res://textures/Boss.png"), Vector2(3, 3), Vector2(0.1, 0.1)]
 }
 
 @onready var sprite_2d : Sprite2D = $Visuals/Sprite2D
@@ -35,6 +35,7 @@ func set_room(new_data : Room ) -> void :
 	position = room.position
 	line_2d.rotation_degrees = randi_range(0, 360)
 	sprite_2d.texture = ICONS[room.type][0]
+	sprite_2d.scale = ICONS[room.type][2]
 	self.scale = ICONS[room.type][1]
 
 func show_selected() -> void :

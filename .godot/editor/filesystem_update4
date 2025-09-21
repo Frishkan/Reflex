@@ -8,3 +8,4 @@ res://scenes/guitar_hit.tscn
 res://scripts/guitar_hero_qte.gd
 res://scripts/guitar_hit.gd
 res://scripts/enemy_spawn.gd
+res://scripts/map_room.gd

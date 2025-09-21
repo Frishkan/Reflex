@@ -25,24 +25,28 @@ func _input(event: InputEvent) -> void:
 		if $HitsContainer.get_child(0).currently_in_area_a :
 			$HitsContainer.get_child(0).queue_free()
 			hits += 1
+			blink($InputAreaA)
 		else :
 			misses += 1
 	elif event.is_action_pressed("s") :
 		if $HitsContainer.get_child(0).currently_in_area_s :
 			$HitsContainer.get_child(0).queue_free()
 			hits += 1
+			blink($InputAreaS)
 		else :
 			misses += 1
 	elif event.is_action_pressed("d") :
 		if $HitsContainer.get_child(0).currently_in_area_d :
 			$HitsContainer.get_child(0).queue_free()
 			hits += 1
+			blink($InputAreaD)
 		else :
 			misses += 1
 	elif event.is_action_pressed("f") :
 		if $HitsContainer.get_child(0).currently_in_area_f :
 			$HitsContainer.get_child(0).queue_free()
 			hits += 1
+			blink($InputAreaF)
 		else :
 			misses += 1
 
@@ -80,3 +84,8 @@ func _on_hits_container_child_exiting_tree(_node: Node) -> void:
 		get_parent().get_parent().output((hits * global_card_stats[0] - (global_card_stats[1] - hits + misses) * global_card_stats[3]) * global_card_stats[5], global_card_stats[4])
 		get_parent().qte_active = false
 		queue_free()
+
+func blink(area : Area2D) :
+	area.visibility.modulate = 0.6
+	await get_tree().create_timer(0.1).timeout
+	area.visibility.modulate = 1

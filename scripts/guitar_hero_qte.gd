@@ -86,6 +86,6 @@ func _on_hits_container_child_exiting_tree(_node: Node) -> void:
 		queue_free()
 
 func blink(area : Area2D) :
-	area.visibility.modulate = 0.6
+	area.modulate = "fea09388"
 	await get_tree().create_timer(0.1).timeout
-	area.visibility.modulate = 1
+	area.modulate = "ffffff"

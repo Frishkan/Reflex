@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c168j540es6dh"]
 
-[ext_resource type="Texture2D" uid="uid://bespeypiwa1oq" path="res://textures/monster.png" id="1_764vs"]
+[ext_resource type="Texture2D" uid="uid://cnxs53vfr6yen" path="res://textures/monster.png" id="1_764vs"]
 [ext_resource type="Script" path="res://scripts/map_room.gd" id="1_lnjsq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m876x"]
@@ -102,6 +102,7 @@ closed = true
 width = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture_filter = 1
 position = Vector2(-7.62939e-06, 0)
 scale = Vector2(0.101124, 0.101124)
 texture = ExtResource("1_764vs")

@@ -1,9 +1,9 @@
 class_name MapGenerator
 extends Node2D
 
-const x_dist := 30
-const y_dist := 25
-@export var placement_randomness := 5
+const x_dist := 120
+const y_dist := 100
+@export var placement_randomness := 20
 ## ^ how much rooms leave the grid 
 const floors := 15 ## rows
 const floor_width := 7

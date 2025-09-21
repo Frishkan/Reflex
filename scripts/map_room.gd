@@ -5,12 +5,12 @@ signal selected(room : Room)
 
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2(1, 1)],
-	Room.Type.MONSTER: [preload("res://textures/monster.png"), Vector2(1, 1), Vector2(0.2, 0.2)],
-	Room.Type.TREASURE: [preload("res://textures/Chalice.png"), Vector2(2.5, 2.5), Vector2(0.1, 0.1)],
-	Room.Type.CAMPFIRE: [preload("res://textures/Camp.png"), Vector2(2.5, 2.5), Vector2(0.1, 0.1)],
-	Room.Type.SHOP: [preload("res://textures/Shop.png"), Vector2(1.5, 1.5), Vector2(0.1, 0.1)],
-	Room.Type.ELITE: [preload("res://textures/bitmap.png"), Vector2(1.8, 1.8), Vector2(0.1, 0.1)],
-	Room.Type.BOSS: [preload("res://textures/Boss.png"), Vector2(3, 3), Vector2(0.1, 0.1)]
+	Room.Type.MONSTER: [preload("res://textures/monster.png"), Vector2(4, 4), Vector2(0.2, 0.2)],
+	Room.Type.TREASURE: [preload("res://textures/Chalice.png"), Vector2(10, 10), Vector2(0.1, 0.1)],
+	Room.Type.CAMPFIRE: [preload("res://textures/Camp.png"), Vector2(10, 10), Vector2(0.1, 0.1)],
+	Room.Type.SHOP: [preload("res://textures/Shop.png"), Vector2(6, 6), Vector2(0.1, 0.1)],
+	Room.Type.ELITE: [preload("res://textures/bitmap.png"), Vector2(7.2, 7.2), Vector2(0.1, 0.1)],
+	Room.Type.BOSS: [preload("res://textures/Boss.png"), Vector2(12, 12), Vector2(0.1, 0.1)]
 }
 
 @onready var sprite_2d : Sprite2D = $Visuals/Sprite2D

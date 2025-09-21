@@ -8,6 +8,7 @@
 script = ExtResource("1_m0x67")
 
 [node name="hud" parent="." instance=ExtResource("1_n05ew")]
+visible = false
 position = Vector2(-2, 1)
 
 [node name="map" parent="." instance=ExtResource("3_cn53b")]

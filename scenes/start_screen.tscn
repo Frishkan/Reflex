@@ -6,24 +6,24 @@
 script = ExtResource("1_jmf35")
 
 [node name="start" type="Button" parent="."]
-offset_left = 125.0
-offset_top = 79.0
-offset_right = 746.0
-offset_bottom = 226.0
+offset_left = 36.0
+offset_top = 60.0
+offset_right = 436.0
+offset_bottom = 110.0
 text = "Start"
 
 [node name="settings" type="Button" parent="."]
-offset_left = 131.0
-offset_top = 260.0
-offset_right = 746.0
-offset_bottom = 405.0
+offset_left = 36.0
+offset_top = 120.0
+offset_right = 436.0
+offset_bottom = 170.0
 text = "Settings"
 
 [node name="Exit" type="Button" parent="."]
-offset_left = 137.0
-offset_top = 439.0
-offset_right = 752.0
-offset_bottom = 584.0
+offset_left = 36.0
+offset_top = 180.0
+offset_right = 436.0
+offset_bottom = 230.0
 text = "Exit"
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]

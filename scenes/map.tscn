@@ -18,4 +18,5 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(576, 323)
+offset = Vector2(395, 98)
+zoom = Vector2(0.96, 0.96)

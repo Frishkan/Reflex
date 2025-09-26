@@ -23,7 +23,7 @@ func _ready() -> void:
 	pass
 
 func set_enemy(new_enemy_type: Enemy.Type) :
-	self.position = Vector2(1200 - 150 * (index + 1), 400)
+	self.position = Vector2(780 - 80 * (index + 1), 275)
 	sprite_2d.texture = ICONS[new_enemy_type][0]
 	self.scale = ICONS[new_enemy_type][1]
 	enemy_health_bar.max_value = ICONS[new_enemy_type][2]

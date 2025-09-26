@@ -9,7 +9,7 @@ const ICONS := {
 	Room.Type.TREASURE: [preload("res://textures/Chalice.png"), Vector2(10, 10), Vector2(0.1, 0.1)],
 	Room.Type.CAMPFIRE: [preload("res://textures/Camp.png"), Vector2(10, 10), Vector2(0.1, 0.1)],
 	Room.Type.SHOP: [preload("res://textures/Shop.png"), Vector2(6, 6), Vector2(0.1, 0.1)],
-	Room.Type.ELITE: [preload("res://textures/bitmap.png"), Vector2(7.2, 7.2), Vector2(0.1, 0.1)],
+	Room.Type.ELITE: [preload("res://textures/Elite.png"), Vector2(7.2, 7.2), Vector2(0.1, 0.1)],
 	Room.Type.BOSS: [preload("res://textures/Boss.png"), Vector2(12, 12), Vector2(0.1, 0.1)]
 }
 

@@ -4,7 +4,8 @@
 
 [node name="MapLine" type="Line2D"]
 modulate = Color(0.350636, 0.240143, 9.62615e-08, 1)
+texture_filter = 1
 texture_repeat = 2
-width = 40.0
+width = 30.0
 texture = ExtResource("1_nxini")
 texture_mode = 1

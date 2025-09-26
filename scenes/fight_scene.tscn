@@ -20,17 +20,18 @@ script = ExtResource("1_klvbb")
 unique_name_in_owner = true
 
 [node name="Hero" type="Node2D" parent="."]
-position = Vector2(215, 458)
+position = Vector2(150, 275)
+scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hero"]
-position = Vector2(0, -90)
+position = Vector2(0, -26)
 texture = ExtResource("2_4p8rm")
 
 [node name="HeroHealthBar" type="TextureProgressBar" parent="Hero"]
 offset_left = -100.0
-offset_top = 15.0
+offset_top = 79.0
 offset_right = 100.0
-offset_bottom = 45.0
+offset_bottom = 109.0
 max_value = 80.0
 value = 80.0
 texture_progress = SubResource("GradientTexture2D_o3ci4")
@@ -38,12 +39,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HeroHealthNumber" type="Label" parent="Hero"]
 offset_left = -11.0
-offset_top = 18.0
+offset_top = 82.0
 offset_right = 29.0
-offset_bottom = 41.0
+offset_bottom = 105.0
 text = "80"
 metadata/_edit_use_anchors_ = true
 
 [node name="QTEs" type="Node2D" parent="."]
-position = Vector2(570, 122)
+position = Vector2(386, 122)
 script = ExtResource("3_jmeni")

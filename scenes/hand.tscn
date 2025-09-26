@@ -3,9 +3,11 @@
 [ext_resource type="Script" path="res://scripts/hand.gd" id="1_vr60v"]
 
 [node name="Hand" type="Node2D"]
+scale = Vector2(0.65, 0.65)
 script = ExtResource("1_vr60v")
 
 [node name="Cards" type="Node2D" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
 
 [connection signal="child_exiting_tree" from="Cards" to="." method="_on_cards_child_exiting_tree"]

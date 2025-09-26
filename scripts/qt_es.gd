@@ -13,6 +13,6 @@ func knife(card_stats : Array):
 func guitar_hero(card_stats : Array) :
 	qte_active = true
 	var guitar_hero_qte = GUITAR_HERO_QTE.instantiate()
-	guitar_hero_qte.position = Vector2(-200, -100)
+	guitar_hero_qte.position = Vector2(-130, -100)
 	add_child(guitar_hero_qte)
 	guitar_hero_qte.start(card_stats)

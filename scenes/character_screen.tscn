@@ -22,6 +22,7 @@ height = 50
 
 [node name="character_screen" type="Node2D"]
 position = Vector2(1, 0)
+scale = Vector2(0.65, 0.65)
 script = ExtResource("1_lxnh8")
 
 [node name="character1" type="Button" parent="."]

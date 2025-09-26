@@ -17,6 +17,7 @@ size = Vector2(80, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_230h7"]
 
 [node name="GuitarHeroQTE" type="Node2D"]
+scale = Vector2(0.65, 0.65)
 script = ExtResource("1_wrcfa")
 
 [node name="Background" type="Sprite2D" parent="."]

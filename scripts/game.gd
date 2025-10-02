@@ -12,6 +12,18 @@ func _map_exited(room: Room) :
 
 func go_to(type: Room.Type) :
 	print("went to ", type) ## match: 
-	if type == Room.Type.MONSTER :
-		var room_instance = FIGHT_SCENE.instantiate() as FightScene
-		self.add_child(room_instance)
+	var room_instance : Node2D
+	match type :
+		Room.Type.MONSTER :
+			room_instance = FIGHT_SCENE.instantiate() as FightScene
+			room_instance.room_type = type
+			
+		Room.Type.ELITE :
+			room_instance = FIGHT_SCENE.instantiate() as FightScene
+			room_instance.room_type = type
+			
+		Room.Type.BOSS :
+			room_instance = FIGHT_SCENE.instantiate() as FightScene
+			room_instance.room_type = type
+		
+	self.add_child(room_instance)

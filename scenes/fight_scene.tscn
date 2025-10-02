@@ -48,3 +48,5 @@ metadata/_edit_use_anchors_ = true
 [node name="QTEs" type="Node2D" parent="."]
 position = Vector2(386, 122)
 script = ExtResource("3_jmeni")
+
+[connection signal="child_exiting_tree" from="Enemies" to="." method="_on_enemies_child_exiting_tree"]

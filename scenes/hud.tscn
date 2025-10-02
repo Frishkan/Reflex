@@ -39,7 +39,7 @@ offset_left = 48.0
 offset_top = 7.0
 offset_right = 88.0
 offset_bottom = 30.0
-text = "999"
+text = "0"
 
 [node name="Exit" type="Button" parent="."]
 offset_left = 14.0

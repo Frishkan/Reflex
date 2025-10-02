@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://6p4b4vbbihky"]
+
+[ext_resource type="Script" path="res://scripts/rewards.gd" id="1_a8upy"]
+
+[node name="Rewards" type="Node2D"]
+script = ExtResource("1_a8upy")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 772.0
+offset_bottom = 446.0
+
+[node name="ContinueButton" type="Button" parent="."]
+offset_left = 643.0
+offset_top = 349.0
+offset_right = 722.0
+offset_bottom = 380.0
+text = "Continue"
+
+[node name="RewardContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 184.0
+offset_top = 38.0
+offset_right = 584.0
+offset_bottom = 538.0
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

@@ -10,4 +10,12 @@ script = ExtResource("1_vr60v")
 unique_name_in_owner = true
 texture_filter = 1
 
+[node name="EndTurnButton" type="Button" parent="."]
+offset_left = 940.001
+offset_top = -90.7692
+offset_right = 1015.0
+offset_bottom = -59.7692
+text = "End turn"
+
 [connection signal="child_exiting_tree" from="Cards" to="." method="_on_cards_child_exiting_tree"]
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

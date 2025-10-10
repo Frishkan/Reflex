@@ -27,6 +27,7 @@ texture = ExtResource("1_o8eau")
 
 [node name="Name" type="Label" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 31.0
 offset_top = 97.0
 offset_right = 89.0
@@ -37,6 +38,7 @@ horizontal_alignment = 1
 
 [node name="ShortDesc" type="Label" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 11.0
 offset_top = 120.0
 offset_right = 109.0
@@ -44,6 +46,7 @@ offset_bottom = 174.0
 text = "Test"
 label_settings = SubResource("LabelSettings_vuo61")
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [connection signal="gui_input" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

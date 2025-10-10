@@ -9,6 +9,7 @@ extends Node2D
 
 var index : int
 var health : int
+var type : Enemy.Type
 
 const ICONS := {
 	Enemy.Type.ATTACKER1: [preload("res://icon.svg"), Vector2(1, 1), 40],
@@ -27,6 +28,7 @@ func set_enemy(new_enemy_type: Enemy.Type) :
 	sprite_2d.texture = ICONS[new_enemy_type][0]
 	self.scale = ICONS[new_enemy_type][1]
 	enemy_health_bar.max_value = ICONS[new_enemy_type][2]
+	type = new_enemy_type
 	update_health(ICONS[new_enemy_type][2])
 
 func update_health(new_health : int) :

@@ -36,11 +36,11 @@ func start(room : Room.Type) :
 	$RewardContainer.add_child(card)
 	
 	
-	if room ==  5 || room == 6: ## if elite defeated
+	if room ==  5 || room == 6: ## if elite or boss defeated
 		var item = REWARD_ITEM.instantiate()
 		item.position = Vector2(20, 3 * offset)
 		## pick_random_item_from_pool()
-		## set_item_stats
+		## set_item_stats()
 		$RewardContainers.add_child(item)
 
 

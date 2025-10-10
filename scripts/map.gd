@@ -19,7 +19,6 @@ var camera_top_offset := 132
 
 func _ready() -> void:
 	camera_edge_y = MapGenerator.y_dist * (MapGenerator.floors - 1) - camera_top_offset
-	
 	generate_new_map()
 	unlock_floor(0)
 

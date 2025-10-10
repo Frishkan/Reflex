@@ -10,11 +10,12 @@ var card : Card : set = set_card
 var index : int
 var hand_size := 800
 var hand_card_name : Card.Name
+var is_usable_in_hand := true
 
 
 const ICONS := {
-	Card.Name.KNIFE: [preload("res://textures/knife_card.png"), Vector2(1, 1), "Knife", "2 * hits/10"],
-	Card.Name.SKILLFULL_BARRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Skillfull barrage", "3 * hits/10 - 2 * (10 - hits/10)"],
+	Card.Name.KNIFE: [preload("res://textures/knife_card.png"), Vector2(1, 1), "Knife", "2 * hits/5", "Deals 2 damage per hit. Maximum 5 hits (10 dmg). Uses knife QTE."],
+	Card.Name.SKILLFULL_BARRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Skillfull barrage", "4 * hits/10 - 2 * (10 - hits/10)", "Deals 4 damage per hit. Each miss deals 2 less. Maximum 10 hits (40 dmg). Uses guitar hero QTE."],
 }
 
 func _ready() -> void:
@@ -45,7 +46,7 @@ func _on_mouse_exited() -> void:
 
 
 func _on_input_event(event: InputEvent) -> void:
-	if event.is_action_pressed("left_mouse") && !get_parent().get_parent().get_parent().get_parent().get_node("FightScene").get_node("QTEs").qte_active : 
+	if event.is_action_pressed("left_mouse") && !get_parent().get_parent().get_parent().get_parent().get_node("FightScene").get_node("QTEs").qte_active && is_usable_in_hand: 
 		Events.card_played.emit(self)
 		queue_free()
 

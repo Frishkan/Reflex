@@ -12,13 +12,13 @@ func _ready() -> void:
 
 func start(card_stats : Array) :
 	global_card_stats = card_stats
-	for max_hits in global_card_stats[1] :
+	for max_hits in global_card_stats[0] :
 		var roll := randi_range(0, 3)
 		var hit_instance = GUITAR_HIT.instantiate()
-		hit_instance.speed = global_card_stats[2]
+		hit_instance.speed = global_card_stats[1]
 		hit_instance.position = Vector2(50 + roll * 100, -10)
 		$HitsContainer.add_child(hit_instance)
-		await get_tree().create_timer(global_card_stats[2] * 0.001 + 0.2).timeout
+		await get_tree().create_timer(global_card_stats[1] * 0.001 + 0.2).timeout
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("a") :
@@ -80,9 +80,10 @@ func _on_input_area_f_body_exited(body: CharacterBody2D) -> void:
 
 
 func _on_hits_container_child_exiting_tree(_node: Node) -> void:
-	if $HitsContainer.get_child_count() <= 1 && counter == global_card_stats[1]:
-		var effect_strenght = clamp(hits * global_card_stats[0] - (global_card_stats[1] - hits + misses) * global_card_stats[3], 0, 2147483646)
-		get_parent().get_parent().output(effect_strenght * global_card_stats[5], global_card_stats[4])
+	if $HitsContainer.get_child_count() <= 1 && counter == global_card_stats[0]:
+		var effect_strenght = [hits, misses]
+		get_parent().get_parent().effect_strenght = effect_strenght
+		Events.qte_ended.emit()
 		get_parent().qte_active = false
 		queue_free()
 

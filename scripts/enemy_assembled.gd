@@ -20,8 +20,6 @@ const ICONS := {
 	Enemy.Type.BOSS1: [preload("res://icon.svg"), Vector2(1, 1), 800]
 }
 
-func _ready() -> void:
-	pass
 
 func set_enemy(new_enemy_type: Enemy.Type) :
 	self.position = Vector2(780 - 80 * (index + 1), 275)

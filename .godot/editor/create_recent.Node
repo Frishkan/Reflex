@@ -1,8 +1,9 @@
+AnimationPlayer
+Label
 Button
 Control
 MenuButton
 Panel
-Label
 Sprite2D
 Node2D
 CollisionShape2D
@@ -11,4 +12,3 @@ Area2D
 StaticBody2D
 TextureProgressBar
 ProgressBar
-AnimationPlayer

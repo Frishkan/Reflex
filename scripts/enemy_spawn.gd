@@ -31,7 +31,6 @@ func spawn_enemy() :
 		self.add_child(enemy_instance)
 		enemy_instance.index = enemy_index
 		enemy_instance.set_enemy(enemy_type_array[enemy_index - 1])
-		enemy_instance.get_child(3).start()
 
 func get_enemies_array() -> Array :
 	setup_weights()

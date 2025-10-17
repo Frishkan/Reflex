@@ -41,7 +41,7 @@ func start(room : Room.Type) :
 		item.position = Vector2(20, 3 * offset)
 		## pick_random_item_from_pool()
 		## set_item_stats()
-		$RewardContainers.add_child(item)
+		$RewardContainer.add_child(item)
 
 
 func _on_continue_button_pressed() -> void:

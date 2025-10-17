@@ -50,6 +50,7 @@ func _on_confirm_pressed() -> void:
 
 func set_health(health : int) -> void:
 	Singleton.hero_health = health
+	Singleton.hero_max_health = health
 	$CharHealth/HealthBar.max_value = health
 	$CharHealth/HealthBar.value = health
 	$CharHealth/HealthNumber.text = str($CharHealth/HealthBar.value) + " / " + str($CharHealth/HealthBar.max_value)

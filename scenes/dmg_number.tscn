@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://blxmbb8j8cqs6"]
+
+[ext_resource type="Script" path="res://scripts/dmg_number.gd" id="1_1h6x5"]
+
+[node name="DMGNumber" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(1.5, 1.5)
+text = "5
+"
+horizontal_alignment = 1
+script = ExtResource("1_1h6x5")

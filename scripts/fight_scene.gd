@@ -26,11 +26,11 @@ func _on_enemies_child_exiting_tree(node: Node) -> void:
 		print(enemies_node.get_child_count())
 		var rewards_scene = REWARDS.instantiate()
 		rewards_scene.start(room_type)
-		add_child(rewards_scene)
+		add_child.call_deferred(rewards_scene)
 	exited_by_button = false
 
 func damage(result : int) :
-	enemies_node.get_children()[enemies_node.get_children().size() - 1].change_health(result * -1)
+	enemies_node.get_children()[enemies_node.get_child_count() - 1].change_health(result * -1)
 
 ## Card :
 ## $QTEs.card([max hits, speed])

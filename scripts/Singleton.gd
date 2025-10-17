@@ -1,6 +1,7 @@
 extends Node
 
 var hero_health : int
+var hero_max_health : int
 
 ## 						0 - unplayed
 ## 						1 - played

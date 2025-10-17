@@ -28,6 +28,7 @@ func set_enemy(new_enemy_type: Enemy.Type) :
 	enemy_health_bar.max_value = ICONS[new_enemy_type][2]
 	type = new_enemy_type
 	update_health(ICONS[new_enemy_type][2])
+	$Intents.start()
 
 func update_health(new_health : int) :
 	enemy_health_bar.value = new_health

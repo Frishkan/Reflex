@@ -12,4 +12,7 @@ signal card_recalculate()
 signal turn_ended()
 signal enemy_turn_ended()
 
+signal first_enemy_turn_ended()
+signal second_enemy_turn_ended()
+
 signal qte_ended()

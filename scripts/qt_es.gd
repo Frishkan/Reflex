@@ -2,6 +2,7 @@ extends Node2D
 
 const KNIFE_QTE = preload("res://scenes/knife_qte.tscn")
 const GUITAR_HERO_QTE = preload("res://scenes/guitar_hero_qte.tscn")
+const TIMING_CIRCLE_QTE = preload("res://scenes/timing_circle_qte.tscn")
 var qte_active := false
 
 func knife(card_stats : Array):
@@ -16,3 +17,10 @@ func guitar_hero(card_stats : Array) :
 	guitar_hero_qte.position = Vector2(-130, -100)
 	add_child(guitar_hero_qte)
 	guitar_hero_qte.start(card_stats)
+
+func timing_circle(card_stats : Array) :
+	qte_active = true
+	var timing_circle_qte = TIMING_CIRCLE_QTE.instantiate()
+	timing_circle_qte.position = Vector2(-130, -100)
+	add_child(timing_circle_qte)
+	timing_circle_qte.start(card_stats)

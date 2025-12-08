@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0bi5t7eaacjc"]
+
+[ext_resource type="Script" path="res://scripts/timing_circle_qte.gd" id="1_x0hnm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dwm4f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hpfh0"]
+
+[sub_resource type="Gradient" id="Gradient_8vxpu"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5blpf"]
+gradient = SubResource("Gradient_8vxpu")
+
+[node name="TimingCircleQTE" type="Node2D"]
+script = ExtResource("1_x0hnm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(75, 75)
+scale = Vector2(150, 150)
+texture = SubResource("PlaceholderTexture2D_dwm4f")
+
+[node name="Dot" type="CharacterBody2D" parent="."]
+position = Vector2(75, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dot"]
+shape = SubResource("CircleShape2D_hpfh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dot"]
+scale = Vector2(0.328125, 0.3125)
+texture = SubResource("GradientTexture2D_5blpf")

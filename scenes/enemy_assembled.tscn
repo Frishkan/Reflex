@@ -32,7 +32,24 @@ offset_top = 40.0
 offset_right = 75.0
 offset_bottom = 63.0
 scale = Vector2(0.5, 0.5)
-text = "placeholder"
+text = "hp"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Defence" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16.875, 47.1744)
+scale = Vector2(0.107422, 0.101358)
+texture = ExtResource("2_4376n")
+
+[node name="DefenceNumber" type="Label" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = 40.0
+offset_right = 92.0
+offset_bottom = 63.0
+scale = Vector2(0.5, 0.5)
+text = "def"
 horizontal_alignment = 1
 clip_text = true
 

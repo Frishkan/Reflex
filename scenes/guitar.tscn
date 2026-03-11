@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://1gi7arlb8dbk"]
+
+[ext_resource type="Script" path="res://scripts/guitar.gd" id="1_kn2t7"]
+[ext_resource type="Script" path="res://scripts/anti_crash.gd" id="2_tllvo"]
+
+[sub_resource type="Gradient" id="Gradient_lf0d2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n2day"]
+gradient = SubResource("Gradient_lf0d2")
+
+[sub_resource type="Gradient" id="Gradient_rvb3e"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.435, 0.602, 0.961, 0.508)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2xj6"]
+gradient = SubResource("Gradient_rvb3e")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckfq3"]
+size = Vector2(272, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q6mq"]
+size = Vector2(272, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rrg54"]
+font_size = 40
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r25wm"]
+size = Vector2(144, 72)
+
+[node name="Guitar" type="Node2D"]
+script = ExtResource("1_kn2t7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(132, 92)
+scale = Vector2(0.125, 2.875)
+texture = SubResource("GradientTexture2D_n2day")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.288698, 0.643403, 0.938423, 0.5)
+position = Vector2(136, 92)
+scale = Vector2(4.25, 2.875)
+texture = SubResource("GradientTexture2D_y2xj6")
+
+[node name="Up" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+position = Vector2(136, 16)
+shape = SubResource("RectangleShape2D_ckfq3")
+
+[node name="Down" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+position = Vector2(136, 168)
+shape = SubResource("RectangleShape2D_2q6mq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 192.0
+offset_right = 80.0
+offset_bottom = 248.0
+text = "Am"
+label_settings = SubResource("LabelSettings_rrg54")
+metadata/_edit_use_anchors_ = true
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2(72, 92)
+shape = SubResource("RectangleShape2D_r25wm")
+
+[node name="HitsContainer" type="Node2D" parent="."]
+position = Vector2(512, 96)
+
+[node name="AntiCrash" type="Node2D" parent="."]
+position = Vector2(504, 96)
+script = ExtResource("2_tllvo")
+
+[connection signal="mouse_entered" from="Up" to="." method="_on_up_mouse_entered"]
+[connection signal="mouse_entered" from="Down" to="." method="_on_down_mouse_entered"]
+[connection signal="body_shape_entered" from="Detection" to="." method="_on_detection_body_shape_entered"]
+[connection signal="child_exiting_tree" from="HitsContainer" to="." method="_on_hits_container_child_exiting_tree"]

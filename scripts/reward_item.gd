@@ -22,7 +22,6 @@ func _on_button_pressed() -> void:
 	if card :
 		for i in 3 :
 			get_random_card_from_pool(Singleton.character)
-	
 	queue_free()
 
 func add_card_to_deck(card : Card.Name) :

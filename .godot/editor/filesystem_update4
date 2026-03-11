@@ -1,0 +1,17 @@
+res://scenes/camp.tscn
+res://scripts/game.gd
+res://scripts/camp.gd
+res://scenes/game.tscn
+res://scenes/fight_scene.tscn
+res://scenes/hud.tscn
+res://scenes/enemy_assembled.tscn
+res://scenes/character_screen.tscn
+res://scenes/start_screen.tscn
+res://scenes/guitar.tscn
+res://scenes/guitar_direction.tscn
+res://scenes/timing_circle_qte.tscn
+res://scripts/Singleton.gd
+res://scripts/rewards.gd
+res://scripts/fight_scene.gd
+res://scripts/hud.gd
+res://scripts/hand_card.gd

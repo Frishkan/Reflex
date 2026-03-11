@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5jjgoky4qx46"]
+[gd_scene load_steps=12 format=3 uid="uid://b5jjgoky4qx46"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_4alpo"]
-[ext_resource type="Texture2D" uid="uid://br0ctp0iv3j74" path="res://textures/deck_button.png" id="2_lrc75"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="3_s06af"]
 [ext_resource type="PackedScene" uid="uid://d3oa5axvtgx1k" path="res://scenes/hand.tscn" id="4_u08ry"]
+[ext_resource type="Texture2D" uid="uid://cjwvef4eo1ksd" path="res://textures/Menu_button1.png" id="5_4jbbs"]
 [ext_resource type="Texture2D" uid="uid://ba5s4ld6pvo2e" path="res://textures/Coin.png" id="5_jxt77"]
 [ext_resource type="Script" path="res://scripts/deck_cards.gd" id="5_xm5f8"]
+[ext_resource type="Texture2D" uid="uid://ce7bi8tclifew" path="res://textures/Deck2.png" id="6_lhqs4"]
+[ext_resource type="Texture2D" uid="uid://yd2c08kxu0vc" path="res://textures/Discarded.png" id="7_skhmv"]
+[ext_resource type="Texture2D" uid="uid://dkhqunat0fsh" path="res://icon.svg" id="8_yvp8w"]
 
 [sub_resource type="Gradient" id="Gradient_fvj2n"]
 offsets = PackedFloat32Array(1)
@@ -43,14 +46,17 @@ offset_left = 48.0
 offset_top = 7.0
 offset_right = 88.0
 offset_bottom = 30.0
-text = "0"
 
 [node name="Exit" type="Button" parent="."]
 offset_left = 14.0
 offset_top = 14.0
-offset_right = 54.0
-offset_bottom = 56.0
+offset_right = 72.0
+offset_bottom = 67.0
 focus_mode = 0
+icon = ExtResource("5_4jbbs")
+flat = true
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="Deck" type="Node2D" parent="."]
 z_index = 1
@@ -60,7 +66,6 @@ offset_left = 34.0
 offset_top = 340.0
 offset_right = 74.0
 offset_bottom = 363.0
-text = "4"
 horizontal_alignment = 1
 
 [node name="CardsPlayed" type="Label" parent="Deck"]
@@ -85,21 +90,24 @@ offset_bottom = 675.0
 z_index = 3
 offset_left = 30.0
 offset_top = 362.0
-offset_right = 166.0
-offset_bottom = 498.0
+offset_right = 204.0
+offset_bottom = 536.0
 scale = Vector2(0.361375, 0.36)
 focus_mode = 0
 toggle_mode = true
-icon = ExtResource("2_lrc75")
+icon = ExtResource("6_lhqs4")
 flat = true
+expand_icon = true
 
 [node name="DiscardedCardsButton" type="Button" parent="Deck"]
-offset_left = 661.0
-offset_top = 372.0
-offset_right = 747.0
-offset_bottom = 414.0
+offset_left = 671.0
+offset_top = 360.0
+offset_right = 746.0
+offset_bottom = 426.0
 focus_mode = 0
-text = "Discarded"
+icon = ExtResource("7_skhmv")
+flat = true
+expand_icon = true
 
 [node name="DeckCards" type="Node2D" parent="Deck"]
 visible = false
@@ -115,8 +123,6 @@ offset_left = -100.0
 offset_top = -15.0
 offset_right = 100.0
 offset_bottom = 15.0
-max_value = 80.0
-value = 80.0
 texture_progress = SubResource("GradientTexture2D_c1ge3")
 metadata/_edit_use_anchors_ = true
 
@@ -125,11 +131,24 @@ offset_left = -20.0
 offset_top = -12.0
 offset_right = 20.0
 offset_bottom = 11.0
-text = "80"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HeroDefence" type="Sprite2D" parent="Health"]
+visible = false
+position = Vector2(88, -1.79999)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_yvp8w")
+
+[node name="HeroDefenceNumber" type="Label" parent="Health"]
+visible = false
+offset_left = 68.0
+offset_top = -12.8
+offset_right = 108.0
+offset_bottom = 10.2
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Deck/DeckButton" to="Inventory" method="_on_deck_button_pressed"]
 [connection signal="toggled" from="Deck/DeckButton" to="." method="_on_deck_button_toggled"]
 [connection signal="toggled" from="Deck/DiscardedCardsButton" to="." method="_on_discarded_cards_button_toggled"]

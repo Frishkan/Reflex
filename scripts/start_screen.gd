@@ -2,15 +2,9 @@ extends Node2D
 
 @export var no_save := true
 
-func _ready() -> void: 
-	if no_save :
-		$start.text = "Start"
-	else :
-		$start.text = "Continue"
-
 func _on_start_pressed() -> void:
 	if no_save :
-		get_tree().change_scene_to_file("res://scenes/character_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/game.tscn")
 	else : 
 		pass ## open save file
 

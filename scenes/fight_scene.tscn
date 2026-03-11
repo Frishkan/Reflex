@@ -17,7 +17,7 @@ position = Vector2(150, 275)
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Hero"]
-position = Vector2(0, -26)
+position = Vector2(2, -40)
 texture = ExtResource("2_4p8rm")
 
 [node name="DMGNumberContainer" type="Node2D" parent="Hero"]

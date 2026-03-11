@@ -1,30 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://gova8fdk5nyn"]
+[gd_scene load_steps=5 format=3 uid="uid://gova8fdk5nyn"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_jmf35"]
+[ext_resource type="Texture2D" uid="uid://c7cacnaqhfa6m" path="res://textures/Start_button.png" id="2_ynavx"]
+[ext_resource type="Texture2D" uid="uid://chgx8hpm51kio" path="res://textures/Settings_button.png" id="3_ogq8b"]
+[ext_resource type="Texture2D" uid="uid://dsrlf0kxc5par" path="res://textures/Exit_button.png" id="4_2wjx3"]
 
 [node name="start screen" type="Node2D"]
+position = Vector2(-27, 38)
 script = ExtResource("1_jmf35")
 
 [node name="start" type="Button" parent="."]
-offset_left = 36.0
-offset_top = 60.0
-offset_right = 436.0
-offset_bottom = 110.0
-text = "Start"
+offset_left = 75.0
+offset_top = 119.0
+offset_right = 265.0
+offset_bottom = 201.0
+focus_mode = 0
+icon = ExtResource("2_ynavx")
+flat = true
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="settings" type="Button" parent="."]
-offset_left = 36.0
-offset_top = 120.0
-offset_right = 436.0
-offset_bottom = 170.0
-text = "Settings"
+offset_left = 75.0
+offset_top = 201.0
+offset_right = 265.0
+offset_bottom = 283.0
+focus_mode = 0
+icon = ExtResource("3_ogq8b")
+flat = true
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Exit" type="Button" parent="."]
-offset_left = 36.0
-offset_top = 180.0
-offset_right = 436.0
-offset_bottom = 230.0
-text = "Exit"
+offset_left = 75.0
+offset_top = 283.0
+offset_right = 265.0
+offset_bottom = 365.0
+focus_mode = 0
+icon = ExtResource("4_2wjx3")
+flat = true
+vertical_icon_alignment = 0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]

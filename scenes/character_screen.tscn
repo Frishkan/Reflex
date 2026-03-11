@@ -99,4 +99,3 @@ offset_bottom = 39.0
 [connection signal="pressed" from="character3" to="." method="_on_character_3_pressed"]
 [connection signal="pressed" from="character4" to="." method="_on_character_4_pressed"]
 [connection signal="pressed" from="confirm" to="." method="_on_confirm_pressed"]
-[connection signal="pressed" from="confirm" to="confirm" method="_on_pressed"]

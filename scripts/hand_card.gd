@@ -13,9 +13,12 @@ var hand_card_name : Card.Name
 var is_usable_in_hand := true
 
 
-const ICONS := {
-	Card.Name.KNIFE: [preload("res://textures/knife_card.png"), Vector2(1, 1), "Knife", "2 * hits/5", "Deals 2 damage per hit. Maximum 5 hits (10 dmg). Uses knife QTE."],
-	Card.Name.SKILLFULL_BARRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Skillfull barrage", "4 * hits/10 - 2 * (10 - hits/10)", "Deals 4 damage per hit. Each miss deals 2 less. Maximum 10 hits (40 dmg). Uses guitar hero QTE."],
+const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short description", "long description", preload(QTE_icon), base[damage, hits, miss_penalty, speed], upgrade[damage, hits, miss_penalty, speed]]
+	Card.Name.KNIFE: [preload("res://textures/knife_card.png"), Vector2(1, 1), "Knife", "2 * hits/5", "Deals 2 damage per hit. Maximum 5 hits (10 dmg). Uses knife QTE.", preload("res://icon.svg"), [], []],
+	Card.Name.SKILLFULL_BARRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Skillfull barrage", "4 * hits/10 - 2 * (10 - hits/10)", "Deals 4 damage per hit. Each miss deals 2 less. Maximum 10 hits (40 dmg). Uses guitar hero QTE.", preload("res://icon.svg"), [], []],
+	Card.Name.DEFENCE: [preload("res://icon.svg"), Vector2(1, 1), "Defence", "8", "Gain 8 defence.", preload("res://icon.svg"), [], []],
+	Card.Name.FIREBALL: [preload("res://icon.svg"), Vector2(1, 1), "Fireball", "10", "Damage an enemy for 8 damage and inflict burn", preload("res://icon.svg"), [], []],
+	Card.Name.SOLO: [preload("res://icon.svg"), Vector2(1, 1), "Solo", "6 AOE, confuse", "Damage all enemies for 6 damage and confuse", preload("res://icon.svg"), [], []],
 }
 
 func _ready() -> void:
@@ -46,9 +49,11 @@ func _on_mouse_exited() -> void:
 
 
 func _on_input_event(event: InputEvent) -> void:
-	if event.is_action_pressed("left_mouse") && !get_parent().get_parent().get_parent().get_parent().get_node("FightScene").get_node("QTEs").qte_active && is_usable_in_hand: 
+	if event.is_action_pressed("left_mouse") && !$/root/game/FightScene/QTEs.qte_active && is_usable_in_hand: 
 		Events.card_played.emit(self)
 		queue_free()
+	if event.is_action_pressed("left_mouse") && $/root/game/hud.upgrading :
+		pass
 
 func _recalculate_position() : ## hand ~ 800 px , card size ~ 120 px (es esmu tik dumjs aaaaaaaaaaaaaaa)
 	## var new_card_position := (index * 800 / (get_parent().get_child_count() + 1)) not next to each other (at start)

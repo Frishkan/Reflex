@@ -37,6 +37,8 @@ func start(room : Room.Type) :
 	
 	
 	if room ==  5 || room == 6: ## if elite or boss defeated
+		Singleton.run_elites += 1
+		Singleton.run_enemies -= 1
 		var item = REWARD_ITEM.instantiate()
 		item.position = Vector2(20, 3 * offset)
 		## pick_random_item_from_pool()

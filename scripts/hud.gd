@@ -1,20 +1,20 @@
 extends Node2D
 
-
-func _on_character_screen_character_choosen() -> void:
-	update_hero_health()
+var upgrading := false
 
 func _on_deck_button_toggled(toggled_on: bool) -> void:
-	open_deck(0, toggled_on)
+	open_deck(0, toggled_on, false)
 
 func _on_discarded_cards_button_toggled(toggled_on: bool) -> void:
-	open_deck(1, toggled_on)
+	open_deck(1, toggled_on, false)
 
-func open_deck(deck_type : int, toggled_on : bool) :
+func open_deck(deck_type : int, toggled_on : bool, upgrading : bool) :
 	if toggled_on :
 		$Deck/DeckCards.visible = toggled_on
 		$Deck/Panel.visible = toggled_on
-		$Deck/DeckCards.cards_grid_initiate(0)
+		$Deck/DeckCards.cards_grid_initiate(deck_type)
+		if upgrading :
+			upgrading = true
 	else :
 		$Deck/DeckCards.visible = toggled_on
 		$Deck/Panel.visible = toggled_on

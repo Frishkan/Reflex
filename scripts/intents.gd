@@ -16,6 +16,7 @@ func start() :
 	show_intents()
 
 func get_order() :
+	get_parent().update_defence(get_parent().defence * -1)
 	if get_parent().get_parent().get_child_count() - 1 == get_parent().index :
 		order = 1
 	elif get_parent().get_parent().get_child_count() - 2 == get_parent().index :
@@ -26,6 +27,8 @@ func get_order() :
 
 
 func show_intents() :
+	$/root/game/FightScene.hero_defence -= $/root/game/FightScene.hero_defence
+	$/root/game/FightScene.update_hero_defence()
 	generate_intents_by_type()
 	self.visible = true
 
@@ -66,39 +69,58 @@ func big_attack_intent() :
 		intent_value.text = str(value[1])
 func defend_intent() :
 	intent_icon.texture = preload("res://icon.svg")
-	value = [1, randi_range(8, 24), "defence"]
+	value = [1, randi_range(5, 20), "defence"]
 	intent_value.text = str(value[1])
 func buff_self_intent() :
 	intent_icon.texture = preload("res://icon.svg")
 	value = [1, randi_range(0, 3), "buff_self"]
-	intent_value.text = ""
+	intent_value.text = "Buff"
 func buff_others_intent() :
 	intent_icon.texture = preload("res://icon.svg")
 	value = [1, randi_range(0, 3), "buff_others"]
-	intent_value.text = ""
+	intent_value.text = "Buff others"
 func debuff_intent() :
 	intent_icon.texture = preload("res://icon.svg")
 	value = [1, randi_range(0, 3), "debuff"]
-	intent_value.text = ""
+	intent_value.text = "Debuff"
+func confused_intent() :
+	intent_icon.texture = preload("res://icon.svg")
+	value = [1, 1, "confused"]
+	intent_value.text = "???"
+func retreat_intent() :
+	intent_icon.texture = preload("res://icon.svg")
+	value = [1, 1, "retreat"]
+	intent_value.text = "fleeing"
 
 func use_intents() :
 	match value[2] :
-		"damage" :
+		"damage" : ## this is baaad code writing... yep
 			for hits in value[0] : 
-				Singleton.hero_health -= value[1]
-				hud.update_hero_health()
-				var dmg_num = player_dmg_number.instantiate() as DMGNumber ## help (anim doing weird stuff)
+				if $/root/game/FightScene.hero_defence - value[1] <= 0 :
+					Singleton.hero_health -= (value[1]-$/root/game/FightScene.hero_defence)
+					$/root/game/FightScene.hero_defence = 0
+					hud.update_hero_health()
+				$/root/game/FightScene.hero_defence -= value[1]
+				if $/root/game/FightScene.hero_defence < 0 :
+					$/root/game/FightScene.hero_defence = 0
+				$/root/game/FightScene.update_hero_defence()
+				var dmg_num = player_dmg_number.instantiate() as DMGNumber
 				dmg_number_container.add_child(dmg_num)
 				dmg_num.start(value[1])
 				await get_tree().create_timer(0.5).timeout
 		"defence" :
-			print("matched defence on use : ", value[1])
+			get_parent().defence += value[1]
+			get_parent().update_defence(0)
 		"buff_self" :
 			print("matched buff self on use")
 		"buff_others" :
 			print("matched buff others on use")
 		"debuff" :
 			print("matched debuff on use")
+		"confused" :
+			print("matched confused on use")
+		"retreat" :
+			print("matched confused on use")
 	await get_tree().create_timer(0.5).timeout
 	self.visible = false
 	if order == 1 :

@@ -9,6 +9,7 @@ extends Node2D
 
 var index : int
 var health : int
+var defence : int
 var type : Enemy.Type
 
 const ICONS := {
@@ -38,4 +39,17 @@ func update_health(new_health : int) :
 		queue_free()
 
 func change_health(value : int) :
-	update_health(health + value)
+	if defence + value <= 0 :
+		update_health(health + (defence + value))
+	update_defence(value)
+
+func update_defence(value : int) :
+	if defence + value <= 0 : ## defence broken
+		defence = 0
+		$Defence.visible = false
+		$DefenceNumber.visible = false
+	else : ## new defence
+		defence += value
+		$Defence.visible = true
+		$DefenceNumber.text = str(defence)
+		$DefenceNumber.visible = true

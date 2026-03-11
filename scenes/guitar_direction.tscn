@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ku7vvkcbqxmk"]
+
+[ext_resource type="Script" path="res://scripts/guitar_direction.gd" id="1_yhhp7"]
+[ext_resource type="Texture2D" uid="uid://br0ctp0iv3j74" path="res://textures/deck_button.png" id="2_e1pmu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wtt3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yld5r"]
+size = Vector2(64, 64)
+
+[node name="GuitarDirection" type="Node2D"]
+script = ExtResource("1_yhhp7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_e1pmu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 16.0
+text = "Am"
+label_settings = SubResource("LabelSettings_3wtt3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_yld5r")

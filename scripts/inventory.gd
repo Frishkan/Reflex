@@ -16,9 +16,8 @@ func _spawn_item(item : Item) :
 	items.add_child(inventory_item)
 	inventory_item.set_item(item)
 	inventory_item.item = item
-	
 
-func _on_deck_button_pressed() -> void:
+func getting_item() -> void:
 	var new_item := Item.new()
 	new_item.name = Item.Name.GUITAR
 	Events.item_recieved.emit(new_item)

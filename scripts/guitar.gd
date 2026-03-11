@@ -75,7 +75,7 @@ func _input(event: InputEvent) -> void:
 func _on_hits_container_child_exiting_tree(node: Node) -> void:
 	if $HitsContainer.get_child_count() <= 1 :
 		var effect_strenght = [hits, misses]
-		get_parent().get_parent().effect_strenght = effect_strenght
+		CardsLibrary.effect_strenght = effect_strenght
 		Events.qte_ended.emit()
 		get_parent().qte_active = false
 		queue_free()

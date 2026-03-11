@@ -30,18 +30,8 @@ func _on_character_4_pressed() -> void:
 
 func _on_confirm_pressed() -> void:
 	Singleton.character = character
+	CardsLibrary.character_choosen()
 	Singleton.cards_count_in_hand_per_draw = cards_in_hand
-	
-	match character : ## gives out starter cards
-		1: 
-			Singleton.deck = [[Card.Name.KNIFE, Card.Name.DEFENCE, Card.Name.SOLO, Card.Name.SKILLFULL_BARRAGE],[],[],[]]
-		2:
-			Singleton.deck = [[Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE],[],[],[]]
-		3:
-			Singleton.deck = [[Card.Name.FIREBALL, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE],[],[],[]]
-		4:
-			Singleton.deck = [[Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE],[],[],[]]
-	
 	$/root/game/map.visible = true
 	$/root/game/map.start()
 	$/root/game/hud.update_hero_health()

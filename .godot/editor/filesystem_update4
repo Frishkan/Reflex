@@ -15,3 +15,14 @@ res://scripts/rewards.gd
 res://scripts/fight_scene.gd
 res://scripts/hud.gd
 res://scripts/hand_card.gd
+res://scripts/cards_library.gd
+res://scripts/character_choosing.gd
+res://scripts/qt_es.gd
+res://scripts/hand.gd
+res://scripts/guitar.gd
+res://scripts/guitar_hero_qte.gd
+res://scripts/knife_qte.gd
+res://scripts/timing_circle_qte.gd
+res://scenes/hand_card.tscn
+res://scripts/deck_cards.gd
+res://custom_resources/card.gd

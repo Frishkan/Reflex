@@ -4,51 +4,48 @@ extends Control
 @onready var sprite_2d : Sprite2D = $Sprite2D
 @onready var name_label : Label = $Name
 @onready var short_desc : Label = $ShortDesc
+@onready var qte_icon : Sprite2D = $QTEIcon
 
 
-var card : Card : set = set_card
+var card : Card : set = set_card ##??
 var index : int
 var hand_size := 800
 var hand_card_name : Card.Name
 var is_usable_in_hand := true
-
-
-const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short description", "long description", preload(QTE_icon), base[damage, hits, miss_penalty, speed], upgrade[damage, hits, miss_penalty, speed]]
-	Card.Name.KNIFE: [preload("res://textures/knife_card.png"), Vector2(1, 1), "Knife", "2 * hits/5", "Deals 2 damage per hit. Maximum 5 hits (10 dmg). Uses knife QTE.", preload("res://icon.svg"), [], []],
-	Card.Name.SKILLFULL_BARRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Skillfull barrage", "4 * hits/10 - 2 * (10 - hits/10)", "Deals 4 damage per hit. Each miss deals 2 less. Maximum 10 hits (40 dmg). Uses guitar hero QTE.", preload("res://icon.svg"), [], []],
-	Card.Name.DEFENCE: [preload("res://icon.svg"), Vector2(1, 1), "Defence", "8", "Gain 8 defence.", preload("res://icon.svg"), [], []],
-	Card.Name.FIREBALL: [preload("res://icon.svg"), Vector2(1, 1), "Fireball", "10", "Damage an enemy for 8 damage and inflict burn", preload("res://icon.svg"), [], []],
-	Card.Name.SOLO: [preload("res://icon.svg"), Vector2(1, 1), "Solo", "6 AOE, confuse", "Damage all enemies for 6 damage and confuse", preload("res://icon.svg"), [], []],
-}
+var upgraded := 0
 
 func _ready() -> void:
 	Events.card_recalculate.connect(_recalculate_position)
 
-func set_card(new_card: Card) :
+func set_card(new_card: Card) : ##!!
 	card = new_card
 	self.position = card.position
-	sprite_2d.texture = ICONS[card.name][0]
-	name_label.text = ICONS[card.name][2]
-	short_desc.text = ICONS[card.name][3]
-	self.scale = ICONS[card.name][1]
+	sprite_2d.texture = CardsLibrary.ICONS[card.name][0]
+	name_label.text = CardsLibrary.ICONS[card.name][2]
+	qte_icon.texture = CardsLibrary.ICONS[card.name][4]
+	short_desc.text = str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][0])
+	if CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][1] != 0 :
+		short_desc.text += " * " + str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][1])
+		if CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][2] != 0 :
+			short_desc.text += " - " + str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][2]) + " * " + str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][1])
+	if CardsLibrary.STATS[card.name][2] != "" :
+		short_desc.text += " " + str(CardsLibrary.STATS[card.name][2])
+	upgraded = Singleton.deck[3][Singleton.deck[3].size()-1][1]
+	self.scale = CardsLibrary.ICONS[card.name][1]
 	index = card.index
 	hand_card_name = card.name
-
 
 func _on_mouse_entered() -> void:
 	self.scale = self.scale * 1.5
 	self.position += - Vector2(40, 80)
 	self.z_index += 1
 
-
-
 func _on_mouse_exited() -> void:
 	self.scale = self.scale / 1.5
 	self.position += + Vector2(40, 80)
 	self.z_index += - 1
 
-
-func _on_input_event(event: InputEvent) -> void:
+func _on_input_event(event: InputEvent) -> void: ##!!
 	if event.is_action_pressed("left_mouse") && !$/root/game/FightScene/QTEs.qte_active && is_usable_in_hand: 
 		Events.card_played.emit(self)
 		queue_free()

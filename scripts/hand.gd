@@ -11,10 +11,8 @@ func _ready() -> void:
 func _enemy_turn_ended() :
 	redraw(Singleton.cards_count_in_hand_per_draw)
 	turn_endable = true
-
-func card_picked_up(card: Card) :
-	_spawn_card(card)
-	Events.card_recalculate.emit()
+	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
+	$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
 
 func _spawn_card(card : Card) :
 	if cards.get_child_count() == 12 :
@@ -47,11 +45,10 @@ func redraw(count : int) :
 		shuffle()
 		for cards in Singleton.deck[0].size() :
 			draw(choose_random_card(0))
-	
 	elif Singleton.deck[0].size() < count && Singleton.deck[1].size() >= count - Singleton.deck[0].size():
+		var remainder = count - Singleton.deck[0].size()
 		for cards in Singleton.deck[0].size() :
 			draw(choose_random_card(0))
-		var remainder = count - Singleton.deck[0].size()
 		shuffle()
 		for cards in remainder :
 			draw(choose_random_card(0))
@@ -60,24 +57,25 @@ func redraw(count : int) :
 		for cards in count :
 			draw(choose_random_card(0))
 
-func draw(card_index : int) : 
+func draw(card_index : int) : ##!!!
 	if cards.get_child_count() != 12 :
 		Singleton.deck[3].append(Singleton.deck[0][card_index]) ## copies card from unplayed to hand
 		var new_card := Card.new()
-		new_card.name = Singleton.deck[0][card_index]
+		new_card.name = Singleton.deck[0][card_index][0] ## ?!?!?!?!?
 		Singleton.deck[0].remove_at(card_index) 
-		card_picked_up(new_card)
+		_spawn_card(new_card)
+		Events.card_recalculate.emit()
 		$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
 		await get_tree().create_timer(0.001).timeout
 
 func shuffle() : 
-	for cards in Singleton.deck[1].size() :
-		Singleton.deck[0].append(Singleton.deck[1][cards - 1])
+	Singleton.deck[0].append_array(Singleton.deck[1])
 	Singleton.deck[1].clear()
 	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
+	$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
 
 func _on_end_turn_button_pressed() -> void:
-	if turn_endable :
+	if turn_endable && !$/root/game/FightScene/QTEs.qte_active :
 		Singleton.deck[1].append_array(Singleton.deck[3])
 		Singleton.deck[3].clear()
 		turn_endable = false

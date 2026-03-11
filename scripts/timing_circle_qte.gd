@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 func _on_hits_container_child_exiting_tree(node: Node) -> void:
 	if get_child_count() <= 3 :
 		var effect_strenght = [value, time_elapsed - (local_card_stats[2] * 2)]
-		get_parent().effect_strenght = effect_strenght
+		CardsLibrary.effect_strenght = effect_strenght
 		Events.qte_ended.emit()
 		get_parent().qte_active = false
 		queue_free()

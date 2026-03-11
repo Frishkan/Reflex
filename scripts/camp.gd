@@ -16,3 +16,14 @@ func _on_rest_pressed() -> void:
 
 func _on_upgrade_toggled(toggled_on: bool) -> void:
 	$/root/game/hud.open_deck(0, toggled_on, true)
+
+
+var array : Array
+var num : int
+var seeking : int = 5
+
+func _ready() :
+	while num != seeking :
+		num = randi_range(0, 100)
+		array.append(num)
+	print(array)

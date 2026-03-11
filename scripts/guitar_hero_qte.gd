@@ -71,7 +71,7 @@ func _on_input_area_f_body_exited(body: CharacterBody2D) -> void:
 func _on_hits_container_child_exiting_tree(_node: Node) -> void:
 	if $HitsContainer.get_child_count() <= 1 && counter == global_card_stats[0]:
 		var effect_strenght = [hits, misses]
-		get_parent().get_parent().effect_strenght = effect_strenght
+		CardsLibrary.effect_strenght = effect_strenght
 		Events.qte_ended.emit()
 		get_parent().qte_active = false
 		queue_free()

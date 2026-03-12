@@ -28,7 +28,7 @@ func _card_played(card : HandCard) :
 	for hand_card in cards.get_children() :
 		if cards.get_children()[cards.get_children().find(card)].index < hand_card.index :
 			hand_card.index += -1
-	Singleton.deck[1].append(card.hand_card_name)
+	Singleton.deck[1].append([card.hand_card_name, card.upgraded])
 	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
 	Singleton.deck[3].remove_at(card.index - 1)
 	Events.card_recalculate.emit()
@@ -69,17 +69,20 @@ func draw(card_index : int) : ##!!!
 		await get_tree().create_timer(0.001).timeout
 
 func shuffle() : 
-	Singleton.deck[0].append_array(Singleton.deck[1])
+	for card in Singleton.deck[1] :
+		Singleton.deck[0].append(card)
 	Singleton.deck[1].clear()
 	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
 	$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
 
 func _on_end_turn_button_pressed() -> void:
 	if turn_endable && !$/root/game/FightScene/QTEs.qte_active :
-		Singleton.deck[1].append_array(Singleton.deck[3])
+		for card in Singleton.deck[3] :
+			Singleton.deck[1].append(card)
 		Singleton.deck[3].clear()
 		turn_endable = false
 		for card in cards.get_child_count() :
 			cards.get_child(0).queue_free()
 			await get_tree().create_timer(0.1).timeout
 		Events.turn_ended.emit()
+		print(Singleton.deck)

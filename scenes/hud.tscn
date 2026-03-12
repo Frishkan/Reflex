@@ -31,7 +31,7 @@ script = ExtResource("3_s06af")
 unique_name_in_owner = true
 
 [node name="Hand" parent="." instance=ExtResource("4_u08ry")]
-position = Vector2(87, 340)
+position = Vector2(88, 319)
 
 [node name="Gold" type="Node2D" parent="."]
 position = Vector2(671, 10)
@@ -116,7 +116,7 @@ z_index = 2
 script = ExtResource("5_xm5f8")
 
 [node name="Health" type="Node2D" parent="."]
-position = Vector2(197, 317)
+position = Vector2(197, 285)
 
 [node name="HeroHealthBar" type="TextureProgressBar" parent="Health"]
 offset_left = -100.0

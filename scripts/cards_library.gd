@@ -7,11 +7,11 @@ func character_choosen() : ## starter cards
 		1: 
 			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENCE, 0], [Card.Name.SOLO, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		2:
-			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
+			Singleton.deck[0] = [Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE]
 		3:
-			Singleton.deck[0] = [[Card.Name.FIREBALL, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
+			Singleton.deck[0] = [Card.Name.FIREBALL, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE]
 		4:
-			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
+			Singleton.deck[0] = [Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE]
 
 ## card info, stats 
 const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short description", "long description", preload(QTE_icon)]

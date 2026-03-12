@@ -7,7 +7,7 @@ var hero_max_health : int
 ## 						1 - played
 ## 						2 - voided
 ## 						3 - hand
-var deck : Array[Array] = [[[]],[[]],[[]],[[]]]
+var deck : Array[Array] = [[],[],[],[]]
 var cards_count_in_hand_per_draw : int
 var character : int
 

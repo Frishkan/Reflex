@@ -5,7 +5,7 @@ var scroll_speed = 20
 var height : int
 var offset_bottom := 0
 
-func cards_grid_initiate(deck_type : int) : ## a bug happening here (1 card spawns to the side, it shouldn't even exist)
+func cards_grid_initiate(deck_type : int) : ## a bug happening here (1 card spawns to the side, it shouldn't even exist) !!!!!!!
 	for cards in Singleton.deck[deck_type].size() :
 		var new_card = HAND_CARD.instantiate() as Control
 		self.add_child(new_card)

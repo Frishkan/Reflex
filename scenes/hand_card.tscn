@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpmorysk7inqv"]
+[gd_scene format=3 uid="uid://dpmorysk7inqv"]
 
-[ext_resource type="Script" path="res://scripts/hand_card.gd" id="1_d8xir"]
+[ext_resource type="Script" uid="uid://dwe2r8l15d6fx" path="res://scripts/hand_card.gd" id="1_d8xir"]
 [ext_resource type="Texture2D" uid="uid://cognf5iqwtyua" path="res://textures/knife_card.png" id="1_o8eau"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bmqq"]
@@ -12,7 +12,7 @@ shadow_size = 0
 font_size = 8
 shadow_size = 0
 
-[node name="HandCard" type="Control"]
+[node name="HandCard" type="Control" unique_id=253213477]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -60.0
@@ -21,11 +21,11 @@ offset_right = 60.0
 offset_bottom = 92.0
 script = ExtResource("1_d8xir")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2139635721]
 position = Vector2(60, 92)
 texture = ExtResource("1_o8eau")
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=2050622132]
 texture_filter = 1
 layout_mode = 0
 offset_left = 31.0
@@ -36,7 +36,7 @@ text = "Knife"
 label_settings = SubResource("LabelSettings_1bmqq")
 horizontal_alignment = 1
 
-[node name="ShortDesc" type="Label" parent="."]
+[node name="ShortDesc" type="Label" parent="." unique_id=336723770]
 texture_filter = 1
 layout_mode = 0
 offset_left = 11.0
@@ -48,7 +48,7 @@ label_settings = SubResource("LabelSettings_vuo61")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="QTEIcon" type="Sprite2D" parent="."]
+[node name="QTEIcon" type="Sprite2D" parent="." unique_id=582303697]
 position = Vector2(60, 160)
 scale = Vector2(0.25, 0.25)
 

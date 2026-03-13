@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ku7vvkcbqxmk"]
+[gd_scene format=3 uid="uid://ku7vvkcbqxmk"]
 
-[ext_resource type="Script" path="res://scripts/guitar_direction.gd" id="1_yhhp7"]
+[ext_resource type="Script" uid="uid://cpedmnxwu6dly" path="res://scripts/guitar_direction.gd" id="1_yhhp7"]
 [ext_resource type="Texture2D" uid="uid://br0ctp0iv3j74" path="res://textures/deck_button.png" id="2_e1pmu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3wtt3"]
@@ -8,14 +8,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yld5r"]
 size = Vector2(64, 64)
 
-[node name="GuitarDirection" type="Node2D"]
+[node name="GuitarDirection" type="Node2D" unique_id=861543606]
 script = ExtResource("1_yhhp7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=663764056]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_e1pmu")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1904464749]
 offset_left = -24.0
 offset_top = -16.0
 offset_right = 24.0
@@ -25,7 +25,7 @@ label_settings = SubResource("LabelSettings_3wtt3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1913081754]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1745623332]
 shape = SubResource("RectangleShape2D_yld5r")

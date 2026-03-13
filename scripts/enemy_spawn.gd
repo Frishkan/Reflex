@@ -82,8 +82,8 @@ func setup_weights() -> void :
 	rand_total_weight = rand_weights[Enemy.Type.DEBUFFER1]
 
 func enemy_turn() :
-	for enemy in get_children() :
-		enemy.update_defence(enemy.defence * -1)
-		enemy.get_child(6).use_intents()
+	for e in get_child_count() :
+		get_children()[get_child_count()-1-e].update_defence(get_children()[get_child_count()-1-e].defence * -1)
+		get_children()[get_child_count()-1-e].get_child(6).use_intents()
 		await Events.enemy_turned
 	Events.enemy_turn_ended.emit()

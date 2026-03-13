@@ -3,6 +3,8 @@ extends Node2D
 var turn_endable = true
 const HAND_CARD = preload("res://scenes/hand_card.tscn")
 @onready var cards : Node2D = %Cards
+@onready var cards_played : Label = $/root/game/hud/Deck/CardsPlayed
+@onready var cards_unplayed : Label = $/root/game/hud/Deck/CardsToDraw
 
 func _ready() -> void:
 	Events.card_played.connect(_card_played)
@@ -11,8 +13,8 @@ func _ready() -> void:
 func _enemy_turn_ended() :
 	redraw(Singleton.cards_count_in_hand_per_draw)
 	turn_endable = true
-	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
-	$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
+	cards_played.text = str(Singleton.deck[1].size())
+	cards_unplayed.text = str(Singleton.deck[0].size())
 
 func _spawn_card(card : Card) :
 	if cards.get_child_count() == 12 :
@@ -29,7 +31,7 @@ func _card_played(card : HandCard) :
 		if cards.get_children()[cards.get_children().find(card)].index < hand_card.index :
 			hand_card.index += -1
 	Singleton.deck[1].append([card.hand_card_name, card.upgraded])
-	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
+	cards_played.text = str(Singleton.deck[1].size())
 	Singleton.deck[3].remove_at(card.index - 1)
 	Events.card_recalculate.emit()
 
@@ -65,15 +67,15 @@ func draw(card_index : int) : ##!!!
 		Singleton.deck[0].remove_at(card_index) 
 		_spawn_card(new_card)
 		Events.card_recalculate.emit()
-		$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
+		cards_unplayed.text = str(Singleton.deck[0].size())
 		await get_tree().create_timer(0.001).timeout
 
 func shuffle() : 
 	for card in Singleton.deck[1] :
 		Singleton.deck[0].append(card)
 	Singleton.deck[1].clear()
-	$/root/game/hud/Deck/CardsPlayed.text = str(Singleton.deck[1].size())
-	$/root/game/hud/Deck/CardsToDraw.text = str(Singleton.deck[0].size())
+	cards_played.text = str(Singleton.deck[1].size())
+	cards_unplayed.text = str(Singleton.deck[0].size())
 
 func _on_end_turn_button_pressed() -> void:
 	if turn_endable && !$/root/game/FightScene/QTEs.qte_active :

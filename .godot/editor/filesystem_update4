@@ -1,0 +1,12 @@
+res://scenes/guitar_direction.tscn
+res://scripts/guitar.gd
+res://scripts/guitar_direction.gd
+res://scenes/timing_circle_qte.tscn
+res://scripts/timing_circle_qte.gd
+res://scenes/hand_card.tscn
+res://scripts/hand_card.gd
+res://scenes/hand.tscn
+res://scripts/hand.gd
+res://scenes/menu.tscn
+res://scripts/enemy_spawn.gd
+res://scenes/enemy_assembled.tscn

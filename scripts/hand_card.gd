@@ -5,9 +5,10 @@ extends Control
 @onready var name_label : Label = $Name
 @onready var short_desc : Label = $ShortDesc
 @onready var qte_icon : Sprite2D = $QTEIcon
+@onready var hud : Node2D = $/root/game/hud
+@onready var qtes : Node2D = $/root/game/FightScene/QTEs
 
-
-var card : Card : set = set_card ##??
+var card : Card : set = set_card 
 var index : int
 var hand_size := 800
 var hand_card_name : Card.Name
@@ -48,13 +49,13 @@ func _on_mouse_exited() -> void:
 	self.z_index += - 1
 
 func _on_input_event(event: InputEvent) -> void: ##!!
-	if event.is_action_pressed("left_mouse") && !$/root/game/FightScene/QTEs.qte_active && is_usable_in_hand:
+	if event.is_action_pressed("left_mouse") && hud.upgrading :
+		pass
+	elif event.is_action_pressed("left_mouse") && !qtes.qte_active && is_usable_in_hand:
 		if needs_choosing :
 			await Events.choosed_enemy_index
 		Events.card_played.emit(self)
 		queue_free()
-	if event.is_action_pressed("left_mouse") && $/root/game/hud.upgrading :
-		pass
 
 func _recalculate_position() : ## hand ~ 800 px , card size ~ 120 px (es esmu tik dumjs aaaaaaaaaaaaaaa)
 	## var new_card_position := (index * 800 / (get_parent().get_child_count() + 1)) not next to each other (at start)

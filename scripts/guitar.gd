@@ -12,6 +12,8 @@ var body_type : int ## 0 = pause, 1 = up, 2 = down
 var chord : int = 0
 var random_chord := 0
 @onready var entered_hit : Node2D = $AntiCrash
+@onready var hits_container : Node2D = $HitsContainer
+@onready var current_chord : Label = $Label
 
 
 #func _ready() -> void: ## testing
@@ -24,7 +26,7 @@ func start(card_stats : Array) :
 			var hit_instance = GUITAR_HIT.instantiate()
 			hit_instance.speed = global_card_stats[0]
 			hit_instance.position = Vector2(1, 1)
-			$HitsContainer.add_child(hit_instance)
+			hits_container.add_child(hit_instance)
 			counter += 1
 			await get_tree().create_timer(global_card_stats[0] * 0.003 + 0.2).timeout
 		random_chord = randi_range(0, 3)
@@ -58,22 +60,22 @@ func _on_detection_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("a") :
 		chord = 0
-		$Label.text = "Am"
+		current_chord.text = "Am"
 	if event.is_action_pressed("s") :
 		chord = 1
-		$Label.text = "S"
+		current_chord.text = "S"
 	if event.is_action_pressed("d") :
 		chord = 2
-		$Label.text = "Dm"
+		current_chord.text = "Dm"
 	if event.is_action_pressed("f") :
 		chord = 3
-		$Label.text = "F"
+		current_chord.text = "F"
 	if event.is_action_pressed("space") && entered_hit.type == 0:
 		hits += 1
 		entered_hit.modulate.a = 0.5
 
 func _on_hits_container_child_exiting_tree(_node: Node) -> void:
-	if $HitsContainer.get_child_count() <= 1 :
+	if hits_container.get_child_count() <= 1 :
 		var effect_strenght = [hits, misses]
 		CardsLibrary.effect_strenght = effect_strenght
 		Events.qte_ended.emit()

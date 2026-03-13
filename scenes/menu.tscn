@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc6c3kf7bigyx"]
 
-[ext_resource type="Script" uid="uid://brnwp357m7su1" path="res://scenes/menu.gd" id="1_yqeox"]
+[ext_resource type="Script" uid="uid://brnwp357m7su1" path="res://scripts/menu.gd" id="1_yqeox"]
 
 [node name="menu" type="Node2D" unique_id=781325222]
 visible = false

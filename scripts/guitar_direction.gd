@@ -5,22 +5,25 @@ var type : int
 var chord : int
 var hit := false
 
+@onready var chord_label : Label = $Label
+@onready var sprite : Sprite2D = $Sprite2D
+
 func _ready() -> void:
 	type = randi_range(0, 2)
 	if type == 0 :
-		$Label.visible = false
-		$Sprite2D.texture = preload("res://icon.svg")
+		chord_label.visible = false
+		sprite.texture = preload("res://icon.svg")
 	elif type == 2 :
-		$Sprite2D.rotation_degrees = 180
+		sprite.rotation_degrees = 180
 	match get_parent().get_parent().random_chord :
 		0 :
-			$Label.text = "Am"
+			chord_label.text = "Am"
 		1 :
-			$Label.text = "S"
+			chord_label.text = "S"
 		2 :
-			$Label.text = "Dm"
+			chord_label.text = "Dm"
 		3 :
-			$Label.text = "F"
+			chord_label.text = "F"
 	chord = get_parent().get_parent().random_chord
 	get_parent().get_parent().counter += 1
 

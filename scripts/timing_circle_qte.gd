@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	time_elapsed += delta
 	$Dot.position = Vector2(sin(time_elapsed * local_card_stats[0]) * radius, cos(time_elapsed * local_card_stats[0]) * radius) + offset
 
-func _on_hits_container_child_exiting_tree(node: Node) -> void:
+func _on_hits_container_child_exiting_tree(_node: Node) -> void:
 	if get_child_count() <= 3 :
 		var effect_strenght = [value, time_elapsed - (local_card_stats[2] * 2)]
 		CardsLibrary.effect_strenght = effect_strenght

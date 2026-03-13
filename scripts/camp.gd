@@ -1,6 +1,9 @@
 extends Node2D
 class_name Camp
 
+@onready var hud : Node2D = $/root/game/hud
+@onready var map : Node2D = $/root/game/map
+
 var exited_by_button = false
 var room_type : Room.Type
 
@@ -8,14 +11,14 @@ func _on_rest_pressed() -> void:
 	Singleton.hero_health += Singleton.hero_max_health * 0.2
 	if Singleton.hero_health > Singleton.hero_max_health :
 		Singleton.hero_health = Singleton.hero_max_health
-	$/root/game/hud.update_hero_health()
-	$/root/game/map.show_map()
-	$/root/game/map.unlock_next_rooms()
-	$/root/game/hud.visible = false
+	hud.update_hero_health()
+	map.show_map()
+	map.unlock_next_rooms()
+	hud.visible = false
 	queue_free()
 
 func _on_upgrade_toggled(toggled_on: bool) -> void:
-	$/root/game/hud.open_deck(0, toggled_on, true)
+	hud.open_deck(0, toggled_on, true)
 
 
 var array : Array

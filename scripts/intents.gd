@@ -12,23 +12,11 @@ var order : int
 
 func start() :
 	Events.enemy_turn_ended.connect(show_intents)
-	Events.turn_ended.connect(get_order)
 	show_intents()
 
-func get_order() :
-	get_parent().update_defence(get_parent().defence * -1)
-	if get_parent().get_parent().get_child_count() - 1 == get_parent().index :
-		order = 1
-	elif get_parent().get_parent().get_child_count() - 2 == get_parent().index :
-		order = 2
-	else :
-		order = 3
-	order_queue()
-
-
 func show_intents() :
-	$/root/game/FightScene.hero_defence -= $/root/game/FightScene.hero_defence
-	$/root/game/FightScene.update_hero_defence()
+	Singleton.hero_defence -= Singleton.hero_defence
+	hud.update_hero_defence()
 	generate_intents_by_type()
 	self.visible = true
 
@@ -96,14 +84,14 @@ func use_intents() :
 	match value[2] :
 		"damage" : ## this is baaad code writing... yep
 			for hits in value[0] : 
-				if $/root/game/FightScene.hero_defence - value[1] <= 0 :
-					Singleton.hero_health -= (value[1]-$/root/game/FightScene.hero_defence)
-					$/root/game/FightScene.hero_defence = 0
+				if Singleton.hero_defence - value[1] <= 0 :
+					Singleton.hero_health -= (value[1]-Singleton.hero_defence)
+					Singleton.hero_defence = 0
 					hud.update_hero_health()
-				$/root/game/FightScene.hero_defence -= value[1]
-				if $/root/game/FightScene.hero_defence < 0 :
-					$/root/game/FightScene.hero_defence = 0
-				$/root/game/FightScene.update_hero_defence()
+				Singleton.hero_defence -= value[1]
+				if Singleton.hero_defence < 0 :
+					Singleton.hero_defence = 0
+				hud.update_hero_defence()
 				var dmg_num = player_dmg_number.instantiate() as DMGNumber
 				dmg_number_container.add_child(dmg_num)
 				dmg_num.start(value[1])
@@ -122,25 +110,5 @@ func use_intents() :
 		"retreat" :
 			print("matched confused on use")
 	await get_tree().create_timer(0.5).timeout
+	Events.enemy_turned.emit()
 	self.visible = false
-	if order == 1 :
-		Events.first_enemy_turn_ended.emit()
-	elif order == 2 :
-		Events.second_enemy_turn_ended.emit()
-	elif order == 3 :
-		Events.enemy_turn_ended.emit()
-	
-	if get_parent().get_parent().get_child_count() < 3 && order == 2 :
-		Events.enemy_turn_ended.emit()
-	if get_parent().get_parent().get_child_count() < 2 && order == 1 :
-		Events.enemy_turn_ended.emit()
-
-func order_queue() :
-	if order == 1 :
-		use_intents()
-	elif order == 2 :
-		await Events.first_enemy_turn_ended
-		use_intents()
-	elif order == 3 :
-		await Events.second_enemy_turn_ended
-		use_intents()

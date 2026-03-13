@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var map = $map
+@onready var hud = $hud
+
 const FIGHT_SCENE = preload("res://scenes/fight_scene.tscn")
 const CAMP = preload("res://scenes/camp.tscn")
 
@@ -7,8 +10,8 @@ func _ready() -> void:
 	Events.map_exited.connect(_map_exited)
 
 func _map_exited(room: Room) :
-	$map.hide_map()
-	$hud.visible = true
+	map.hide_map()
+	hud.visible = true
 	Singleton.run_rooms += 1
 	go_to(room.type)
 

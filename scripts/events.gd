@@ -10,12 +10,11 @@ signal gold_recieved(value: int)
 
 signal card_played(card: Card)
 signal card_recalculate()
+signal choosed_enemy_index(index : int)
 
 signal turn_ended()
 signal enemy_turn_ended()
-
-signal first_enemy_turn_ended()
-signal second_enemy_turn_ended()
+signal enemy_turned()
 
 signal qte_ended()
 

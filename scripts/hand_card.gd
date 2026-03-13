@@ -50,7 +50,7 @@ func _on_mouse_exited() -> void:
 
 func _on_input_event(event: InputEvent) -> void: ##!!
 	if event.is_action_pressed("left_mouse") && hud.upgrading :
-		pass
+		Singleton.deck[0][index][1] = 1
 	elif event.is_action_pressed("left_mouse") && !qtes.qte_active && is_usable_in_hand:
 		if needs_choosing :
 			await Events.choosed_enemy_index

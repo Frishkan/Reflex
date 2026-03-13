@@ -12,7 +12,7 @@ var deck : Array[Array] = [[],[],[],[]]
 var cards_count_in_hand_per_draw : int
 var character : int
 
-var run_gold : int
+var run_gold : int = 0
 var run_exp : int
 
 var run_rooms : int

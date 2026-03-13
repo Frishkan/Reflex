@@ -10,3 +10,6 @@ res://scripts/hand.gd
 res://scenes/menu.tscn
 res://scripts/enemy_spawn.gd
 res://scenes/enemy_assembled.tscn
+res://scripts/intents.gd
+res://scripts/cards_library.gd
+res://scenes/fight_scene.tscn

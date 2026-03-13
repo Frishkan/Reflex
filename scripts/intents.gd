@@ -2,7 +2,6 @@ extends Node2D
 
 var possibility : Array
 var value : Array ## [times applied, value for, type]
-var order : int
 
 @onready var intent_icon = $IntentSprite2D
 @onready var intent_value = $IntentValue
@@ -82,15 +81,13 @@ func retreat_intent() :
 
 func use_intents() :
 	match value[2] :
-		"damage" : ## this is baaad code writing... yep
+		"damage" : 
 			for hits in value[0] : 
-				if Singleton.hero_defence - value[1] <= 0 :
-					Singleton.hero_health -= (value[1]-Singleton.hero_defence)
+				Singleton.hero_defence -= value[1]
+				if Singleton.hero_defence <= 0 :
+					Singleton.hero_health += (Singleton.hero_defence)
 					Singleton.hero_defence = 0
 					hud.update_hero_health()
-				Singleton.hero_defence -= value[1]
-				if Singleton.hero_defence < 0 :
-					Singleton.hero_defence = 0
 				hud.update_hero_defence()
 				var dmg_num = player_dmg_number.instantiate() as DMGNumber
 				dmg_number_container.add_child(dmg_num)

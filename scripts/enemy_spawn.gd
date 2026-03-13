@@ -86,4 +86,5 @@ func enemy_turn() :
 		get_children()[get_child_count()-1-e].update_defence(get_children()[get_child_count()-1-e].defence * -1)
 		get_children()[get_child_count()-1-e].get_child(6).use_intents()
 		await Events.enemy_turned
+	await get_tree().create_timer(0.001).timeout
 	Events.enemy_turn_ended.emit()

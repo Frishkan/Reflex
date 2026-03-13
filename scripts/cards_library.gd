@@ -22,7 +22,7 @@ const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short descri
 	Card.Name.SOLO: [preload("res://icon.svg"), Vector2(1, 1), "Solo", "Damages and confuses all enemies. Uses guitar QTE.", preload("res://icon.svg")],
 }
 
-const STATS := { ## NAME[base[effect, hits, miss_penalty, speed], upgrade[effect, hits, miss_penalty, speed], "special effects"]
+const STATS := { ## NAME[base[effect, hits, miss_penalty, speed], upgrade[effect, hits, miss_penalty, speed], "special effects", needs_choosing]
 	Card.Name.KNIFE: [[20, 5, 0, 300], [2, 7, 0, 300], "DEBUGGING", 1], ## 10X damage
 	Card.Name.SKILLFULL_BARRAGE: [[4, 8, 2, 400], [6, 10, 2, 400], "", 1],
 	Card.Name.DEFENCE: [[8, 0, 0, 0], [10, 0, 0, 0], "Defence", 0],

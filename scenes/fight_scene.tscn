@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv57y0xxkner8"]
+[gd_scene format=3 uid="uid://bv57y0xxkner8"]
 
-[ext_resource type="Script" path="res://scripts/fight_scene.gd" id="1_f73th"]
-[ext_resource type="Script" path="res://scripts/enemy_spawn.gd" id="1_klvbb"]
+[ext_resource type="Script" uid="uid://dpq5taudpexaj" path="res://scripts/fight_scene.gd" id="1_f73th"]
+[ext_resource type="Script" uid="uid://c743d2sm05s7l" path="res://scripts/enemy_spawn.gd" id="1_klvbb"]
 [ext_resource type="Texture2D" uid="uid://bcw2gvnd782fd" path="res://textures/character_1.png" id="2_4p8rm"]
-[ext_resource type="Script" path="res://scripts/qt_es.gd" id="3_jmeni"]
+[ext_resource type="Script" uid="uid://bq60le0n0ldim" path="res://scripts/qt_es.gd" id="3_jmeni"]
 
-[node name="FightScene" type="Node2D"]
+[node name="FightScene" type="Node2D" unique_id=1931833257]
 script = ExtResource("1_f73th")
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=448664567]
 unique_name_in_owner = true
 script = ExtResource("1_klvbb")
 
-[node name="Hero" type="Node2D" parent="."]
+[node name="Hero" type="Node2D" parent="." unique_id=1806632102]
 position = Vector2(150, 251)
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Hero"]
+[node name="Sprite2D" type="Sprite2D" parent="Hero" unique_id=1736486665]
 position = Vector2(2, -40)
 texture = ExtResource("2_4p8rm")
 
-[node name="DMGNumberContainer" type="Node2D" parent="Hero"]
+[node name="DMGNumberContainer" type="Node2D" parent="Hero" unique_id=81477202]
 
-[node name="QTEs" type="Node2D" parent="."]
+[node name="QTEs" type="Node2D" parent="." unique_id=429068617]
 position = Vector2(386, 122)
 script = ExtResource("3_jmeni")
 

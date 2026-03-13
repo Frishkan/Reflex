@@ -40,21 +40,21 @@ func choose_random_card(deck_type : int) -> int :
 func redraw(count : int) : 
 	## not enough cards to draw :
 	if Singleton.deck[0].size() + Singleton.deck[1].size() < count:
-		for cards in Singleton.deck[0].size() :
+		for card in Singleton.deck[0].size() :
 			draw(choose_random_card(0))
 		shuffle()
-		for cards in Singleton.deck[0].size() :
+		for card in Singleton.deck[0].size() :
 			draw(choose_random_card(0))
 	elif Singleton.deck[0].size() < count && Singleton.deck[1].size() >= count - Singleton.deck[0].size():
 		var remainder = count - Singleton.deck[0].size()
-		for cards in Singleton.deck[0].size() :
+		for card in Singleton.deck[0].size() :
 			draw(choose_random_card(0))
 		shuffle()
-		for cards in remainder :
+		for card in remainder :
 			draw(choose_random_card(0))
 	## enough cards to draw
 	else :
-		for cards in count :
+		for card in count :
 			draw(choose_random_card(0))
 
 func draw(card_index : int) : ##!!!
@@ -77,12 +77,11 @@ func shuffle() :
 
 func _on_end_turn_button_pressed() -> void:
 	if turn_endable && !$/root/game/FightScene/QTEs.qte_active :
+		turn_endable = false
 		for card in Singleton.deck[3] :
 			Singleton.deck[1].append(card)
 		Singleton.deck[3].clear()
-		turn_endable = false
 		for card in cards.get_child_count() :
 			cards.get_child(0).queue_free()
 			await get_tree().create_timer(0.1).timeout
 		Events.turn_ended.emit()
-		print(Singleton.deck)

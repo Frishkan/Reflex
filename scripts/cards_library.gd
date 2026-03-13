@@ -2,16 +2,16 @@ extends Node
 
 ## The main place to add cards to, you also have to include their name in res://custom_resources/card.gd.
 
-func character_choosen() : ## starter cards
+func character_choosen() : ## starter cards, [Card.Name, upgraded : int]
 	match Singleton.character : 
 		1: 
-			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENCE, 0], [Card.Name.SOLO, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
+			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENCE, 1], [Card.Name.SOLO, 1], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		2:
-			Singleton.deck[0] = [Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE]
+			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		3:
-			Singleton.deck[0] = [Card.Name.FIREBALL, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE]
+			Singleton.deck[0] = [[Card.Name.FIREBALL, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		4:
-			Singleton.deck[0] = [Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.KNIFE, Card.Name.SKILLFULL_BARRAGE]
+			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
 
 ## card info, stats 
 const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short description", "long description", preload(QTE_icon)]
@@ -23,11 +23,11 @@ const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short descri
 }
 
 const STATS := { ## NAME[base[effect, hits, miss_penalty, speed], upgrade[effect, hits, miss_penalty, speed], "special effects"]
-	Card.Name.KNIFE: [[20, 5, 0, 300], [2, 7, 0, 300], "DEBUGGING"],
-	Card.Name.SKILLFULL_BARRAGE: [[4, 8, 2, 400], [6, 10, 2, 400], ""],
-	Card.Name.DEFENCE: [[8, 0, 0, 0], [10, 0, 0, 0], "Defence"],
-	Card.Name.FIREBALL: [[2, 12, 0, 400], [3, 12, 0, 400], "Ignite"],
-	Card.Name.SOLO: [[2, 2, 4, 200], [3, 2, 4, 200], "AOE Confuse"], ## uses guitar, miss = chords
+	Card.Name.KNIFE: [[20, 5, 0, 300], [2, 7, 0, 300], "DEBUGGING", 1], ## 10X damage
+	Card.Name.SKILLFULL_BARRAGE: [[4, 8, 2, 400], [6, 10, 2, 400], "", 1],
+	Card.Name.DEFENCE: [[8, 0, 0, 0], [10, 0, 0, 0], "Defence", 0],
+	Card.Name.FIREBALL: [[2, 12, 0, 400], [3, 12, 0, 400], "Ignite", 1],
+	Card.Name.SOLO: [[2, 2, 4, 200], [3, 2, 4, 200], "AOE Confuse", 0], ## uses guitar, miss = chords
 }
 
 const FUNCTIONS := {

@@ -21,6 +21,7 @@ var enemies : Array
 
 
 func _ready() -> void:
+	Events.turn_ended.connect(enemy_turn)
 	spawn_enemy()
 
 func spawn_enemy() :
@@ -58,7 +59,7 @@ func roll_enemy_type() -> Enemy.Type :
 	return Enemy.Type.DUMMY
 
 func roll_enemy_variant(enemy_type_int : int) -> Enemy.Type:
-	var roll := randi_range(1, 5)
+	var roll := randi_range(1, 5) ## to choose between variation
 	match enemy_type_int :
 		1 :
 			return Enemy.Type.ATTACKER1
@@ -79,3 +80,10 @@ func setup_weights() -> void :
 	rand_weights[Enemy.Type.DEBUFFER1] = attacker_weight + tank_weight + buffer_weight + debuffer_weight
 	
 	rand_total_weight = rand_weights[Enemy.Type.DEBUFFER1]
+
+func enemy_turn() :
+	for enemy in get_children() :
+		enemy.update_defence(enemy.defence * -1)
+		enemy.get_child(6).use_intents()
+		await Events.enemy_turned
+	Events.enemy_turn_ended.emit()

@@ -13,6 +13,7 @@ var hand_size := 800
 var hand_card_name : Card.Name
 var is_usable_in_hand := true
 var upgraded := 0
+var needs_choosing := 0
 
 func _ready() -> void:
 	Events.card_recalculate.connect(_recalculate_position)
@@ -31,6 +32,7 @@ func set_card(new_card: Card) : ##!!
 	if CardsLibrary.STATS[card.name][2] != "" :
 		short_desc.text += " " + str(CardsLibrary.STATS[card.name][2])
 	upgraded = Singleton.deck[3][Singleton.deck[3].size()-1][1]
+	needs_choosing = CardsLibrary.STATS[card.name][3]
 	self.scale = CardsLibrary.ICONS[card.name][1]
 	index = card.index
 	hand_card_name = card.name
@@ -46,7 +48,9 @@ func _on_mouse_exited() -> void:
 	self.z_index += - 1
 
 func _on_input_event(event: InputEvent) -> void: ##!!
-	if event.is_action_pressed("left_mouse") && !$/root/game/FightScene/QTEs.qte_active && is_usable_in_hand: 
+	if event.is_action_pressed("left_mouse") && !$/root/game/FightScene/QTEs.qte_active && is_usable_in_hand:
+		if needs_choosing :
+			await Events.choosed_enemy_index
 		Events.card_played.emit(self)
 		queue_free()
 	if event.is_action_pressed("left_mouse") && $/root/game/hud.upgrading :

@@ -52,7 +52,7 @@ func _on_down_mouse_entered() -> void:
 	up = 0
 
 
-func _on_detection_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_detection_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	entered_hit = body.get_parent()
 
 func _input(event: InputEvent) -> void:
@@ -72,7 +72,7 @@ func _input(event: InputEvent) -> void:
 		hits += 1
 		entered_hit.modulate.a = 0.5
 
-func _on_hits_container_child_exiting_tree(node: Node) -> void:
+func _on_hits_container_child_exiting_tree(_node: Node) -> void:
 	if $HitsContainer.get_child_count() <= 1 :
 		var effect_strenght = [hits, misses]
 		CardsLibrary.effect_strenght = effect_strenght

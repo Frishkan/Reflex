@@ -21,12 +21,12 @@ func start(room : Room.Type) :
 	gold.get_child(0).text = str(gold.gold) + ICONS[0][1]
 	$RewardContainer.add_child(gold)
 	
-	var exp = REWARD_ITEM.instantiate()
-	exp.position = Vector2(20, 1 * offset)
-	exp.exp = randi_range(10, 400)
-	exp.get_child(0).icon = ICONS[1][0]
-	exp.get_child(0).text = str(exp.exp) + ICONS[1][1]
-	$RewardContainer.add_child(exp)
+	var experience = REWARD_ITEM.instantiate()
+	experience.position = Vector2(20, 1 * offset)
+	experience.experience = randi_range(10, 400)
+	experience.get_child(0).icon = ICONS[1][0]
+	experience.get_child(0).text = str(experience.experience) + ICONS[1][1]
+	$RewardContainer.add_child(experience)
 	
 	var card = REWARD_ITEM.instantiate()
 	card.position = Vector2(20, 2 * offset)

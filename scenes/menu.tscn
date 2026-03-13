@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dc6c3kf7bigyx"]
+
+[ext_resource type="Script" uid="uid://brnwp357m7su1" path="res://scenes/menu.gd" id="1_yqeox"]
+
+[node name="menu" type="Node2D" unique_id=781325222]
+visible = false
+script = ExtResource("1_yqeox")
+
+[node name="Return" type="Button" parent="." unique_id=835744431]
+top_level = true
+z_index = 10
+offset_left = 282.0
+offset_top = 96.0
+offset_right = 528.0
+offset_bottom = 156.0
+text = "Return"
+
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

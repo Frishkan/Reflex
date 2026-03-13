@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://b072jl1qt0pgo"]
+[gd_scene format=3 uid="uid://b072jl1qt0pgo"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_m0x67"]
+[ext_resource type="Script" uid="uid://bm4omlslnelnq" path="res://scripts/game.gd" id="1_m0x67"]
 [ext_resource type="PackedScene" uid="uid://b5jjgoky4qx46" path="res://scenes/hud.tscn" id="1_n05ew"]
 [ext_resource type="PackedScene" uid="uid://bpw3v3vvjgm73" path="res://scenes/character_screen.tscn" id="2_0xwky"]
 [ext_resource type="PackedScene" uid="uid://bxrrxbjwb4cbq" path="res://scenes/map.tscn" id="3_cn53b"]
+[ext_resource type="PackedScene" uid="uid://dc6c3kf7bigyx" path="res://scenes/menu.tscn" id="5_iywne"]
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" unique_id=1884874161]
 script = ExtResource("1_m0x67")
 
-[node name="character_screen" parent="." instance=ExtResource("2_0xwky")]
+[node name="character_screen" parent="." unique_id=632072842 instance=ExtResource("2_0xwky")]
 position = Vector2(301, 306.5)
 
-[node name="hud" parent="." instance=ExtResource("1_n05ew")]
+[node name="hud" parent="." unique_id=923859970 instance=ExtResource("1_n05ew")]
 visible = false
 position = Vector2(-2, 1)
 
-[node name="map" parent="." instance=ExtResource("3_cn53b")]
+[node name="map" parent="." unique_id=1300314635 instance=ExtResource("3_cn53b")]
 visible = false
+
+[node name="menu" parent="." unique_id=781325222 instance=ExtResource("5_iywne")]
+process_mode = 2

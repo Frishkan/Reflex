@@ -21,9 +21,11 @@ func open_deck(deck_type : int, toggled_on : bool, outer_upgrading : bool) :
 		for card in $Deck/DeckCards.get_child_count() - 1 :
 			$Deck/DeckCards.get_child(card + 1).queue_free()
 
-func _on_exit_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/start_screen.tscn")
-	get_parent().get_child(2).exited_by_button = true
+func _on_menu_pressed():
+	get_tree().paused = true
+	self.hide()
+	$/root/game/FightScene.hide()
+	$/root/game/menu.show()
 
 func update_hero_health() :
 	$Health/HeroHealthBar.max_value = Singleton.hero_max_health

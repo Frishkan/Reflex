@@ -18,9 +18,9 @@ var weights := [1000, 250, 100]
 func _on_button_pressed() -> void:
 	Singleton.run_gold += gold
 	Singleton.run_exp += experience
-	$"/root/game/hud/Gold/GoldNumber".text = str(Singleton.run_gold)
+	$/root/game/hud/Gold/GoldNumber.text = str(Singleton.run_gold)
 	if card :
-		return ## this is kind bugged too
+		return ## this is kinda bugged too
 		for i in 3 :
 			get_random_card_from_pool(Singleton.character)
 	queue_free()

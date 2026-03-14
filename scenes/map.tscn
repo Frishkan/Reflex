@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxrrxbjwb4cbq"]
+[gd_scene format=3 uid="uid://bxrrxbjwb4cbq"]
 
-[ext_resource type="Script" path="res://scripts/map_generator.gd" id="1_156ex"]
-[ext_resource type="Script" path="res://scripts/map.gd" id="1_x60lw"]
+[ext_resource type="Script" uid="uid://ceuijgdkisn6c" path="res://scripts/map_generator.gd" id="1_156ex"]
+[ext_resource type="Script" uid="uid://to3fro1io28c" path="res://scripts/map.gd" id="1_x60lw"]
 
-[node name="map" type="Node2D"]
+[node name="map" type="Node2D" unique_id=990510687]
 script = ExtResource("1_x60lw")
 
-[node name="map_generator" type="Node2D" parent="."]
+[node name="map_generator" type="Node2D" parent="." unique_id=1547154813]
 script = ExtResource("1_156ex")
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visuals" type="Node2D" parent="." unique_id=880571203]
 
-[node name="Line" type="Node2D" parent="Visuals"]
+[node name="Line" type="Node2D" parent="Visuals" unique_id=1251753103]
 unique_name_in_owner = true
 
-[node name="Rooms" type="Node2D" parent="Visuals"]
+[node name="Rooms" type="Node2D" parent="Visuals" unique_id=1890719366]
 unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1110438930]
 offset = Vector2(395, 98)
 zoom = Vector2(0.96, 0.96)

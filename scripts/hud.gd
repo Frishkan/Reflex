@@ -7,13 +7,23 @@ extends Node2D
 @onready var hp_num : Label = $Health/HeroHealthNumber
 @onready var def : Sprite2D = $Health/HeroDefence
 @onready var def_num : Label = $Health/HeroDefenceNumber
+@onready var unplayed_button : Button = $Deck/DeckButton
+@onready var played_button : Button = $Deck/DiscardedCardsButton
 
 var upgrading := false
 
 func _on_deck_button_toggled(toggled_on: bool) -> void:
+	if toggled_on :
+		unplayed_button.z_index = 3
+	else :
+		unplayed_button.z_index = 0
 	open_deck(0, toggled_on, false)
 
 func _on_discarded_cards_button_toggled(toggled_on: bool) -> void:
+	if toggled_on :
+		played_button.z_index = 3
+	else :
+		played_button.z_index = 0
 	open_deck(1, toggled_on, false)
 
 func open_deck(deck_type : int, toggled_on : bool, outer_upgrading : bool) :

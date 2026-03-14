@@ -21,22 +21,25 @@ func _ready() -> void:
 
 func set_card(new_card: Card) : ##!!
 	card = new_card
+	var icons = CardsLibrary.ICONS[card.name]
+	var stats = CardsLibrary.STATS[card.name]
+	var hand_last = Singleton.deck[3][Singleton.deck[3].size() - 1]
 	self.position = card.position
-	sprite_2d.texture = CardsLibrary.ICONS[card.name][0]
-	name_label.text = CardsLibrary.ICONS[card.name][2]
-	qte_icon.texture = CardsLibrary.ICONS[card.name][4]
-	short_desc.text = str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][0])
-	if CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][1] != 0 :
-		short_desc.text += " * " + str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][1])
-		if CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][2] != 0 :
-			short_desc.text += " - " + str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][2]) + " * " + str(CardsLibrary.STATS[card.name][Singleton.deck[3][Singleton.deck[3].size()-1][1]][1])
-	if CardsLibrary.STATS[card.name][2] != "" :
-		short_desc.text += " " + str(CardsLibrary.STATS[card.name][2])
-	upgraded = Singleton.deck[3][Singleton.deck[3].size()-1][1]
-	needs_choosing = CardsLibrary.STATS[card.name][3]
-	self.scale = CardsLibrary.ICONS[card.name][1]
-	index = card.index
-	hand_card_name = card.name
+	sprite_2d.texture = icons[0]
+	name_label.text = icons[2]
+	qte_icon.texture = icons[4]
+	short_desc.text = str(stats[hand_last[1]][0])
+	if stats[hand_last[1]][1] != 0 :
+		short_desc.text += " * " + str(stats[hand_last[1]][1])
+		if stats[hand_last[1]][2] != 0 :
+			short_desc.text += " - " + str(stats[hand_last[1]][2]) + " * " + str(stats[hand_last[1]][1])
+	if stats[2] != "" :
+		short_desc.text += " " + str(stats[2])
+	upgraded = hand_last[1]
+	needs_choosing = stats[3]
+	self.scale = icons[1]
+	index = new_card.index
+	hand_card_name = new_card.name
 
 func _on_mouse_entered() -> void:
 	self.scale = self.scale * 1.5

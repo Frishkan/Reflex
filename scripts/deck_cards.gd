@@ -20,6 +20,7 @@ func cards_grid_initiate(deck_type : int) :
 		new_card.hand_card_name = card[0]
 		new_card.index = index
 		new_card.position = Vector2((index % 4) * card_sizes[0] + 124, (index / 4) * card_sizes[1] + 10)
+		new_card.z_index = 3
 		index += 1
 	height = (get_child_count() / 4) * card_sizes[1]
 

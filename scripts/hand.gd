@@ -1,7 +1,7 @@
 extends Node2D
 
-var turn_endable = true
 const HAND_CARD = preload("res://scenes/hand_card.tscn")
+
 @onready var cards : Node2D = %Cards
 @onready var cards_played : Label = $/root/game/hud/Deck/CardsPlayed
 @onready var cards_unplayed : Label = $/root/game/hud/Deck/CardsToDraw
@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _enemy_turn_ended() :
 	redraw(Singleton.cards_count_in_hand_per_draw)
-	turn_endable = true
 	cards_played.text = str(Singleton.deck[1].size())
 	cards_unplayed.text = str(Singleton.deck[0].size())
 
@@ -76,14 +75,3 @@ func shuffle() :
 	Singleton.deck[1].clear()
 	cards_played.text = str(Singleton.deck[1].size())
 	cards_unplayed.text = str(Singleton.deck[0].size())
-
-func _on_end_turn_button_pressed() -> void:
-	if turn_endable && !$/root/game/FightScene/QTEs.qte_active :
-		turn_endable = false
-		for card in Singleton.deck[3] :
-			Singleton.deck[1].append(card)
-		Singleton.deck[3].clear()
-		for card in cards.get_child_count() :
-			cards.get_child(0).queue_free()
-			await get_tree().create_timer(0.1).timeout
-		Events.turn_ended.emit()

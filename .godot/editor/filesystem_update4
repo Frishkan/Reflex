@@ -4,3 +4,14 @@ res://scripts/deck_cards.gd
 res://scenes/hud.tscn
 res://scripts/hud.gd
 res://scripts/Singleton.gd
+res://scripts/fight_scene.gd
+res://scripts/hand.gd
+res://scenes/hand.tscn
+res://scenes/hand_card.tscn
+res://scripts/guitar_hero_qte.gd
+res://scripts/knife_qte.gd
+res://scripts/map_room.gd
+res://scenes/map.tscn
+res://scripts/menu.gd
+res://scripts/rewards.gd
+res://scripts/reward_item.gd

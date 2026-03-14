@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c743d2sm05s7l" path="res://scripts/enemy_spawn.gd" id="1_klvbb"]
 [ext_resource type="Texture2D" uid="uid://bcw2gvnd782fd" path="res://textures/character_1.png" id="2_4p8rm"]
 [ext_resource type="Script" uid="uid://bq60le0n0ldim" path="res://scripts/qt_es.gd" id="3_jmeni"]
+[ext_resource type="Texture2D" uid="uid://b6m066kxp5ado" path="res://textures/end_turn2.png" id="5_7aqs0"]
 
 [node name="FightScene" type="Node2D" unique_id=1931833257]
 script = ExtResource("1_f73th")
@@ -26,4 +27,15 @@ texture = ExtResource("2_4p8rm")
 position = Vector2(386, 122)
 script = ExtResource("3_jmeni")
 
+[node name="EndTurnButton" type="Button" parent="." unique_id=2097223279]
+offset_left = 687.0
+offset_top = 85.0
+offset_right = 757.36365
+offset_bottom = 148.0
+focus_mode = 0
+icon = ExtResource("5_7aqs0")
+flat = true
+expand_icon = true
+
 [connection signal="child_exiting_tree" from="Enemies" to="." method="_on_enemies_child_exiting_tree"]
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn_button_pressed"]

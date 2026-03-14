@@ -16,6 +16,7 @@ const ICONS := {
 @onready var sprite_2d : Sprite2D = $Visuals/Sprite2D
 @onready var line_2d : Line2D = $Visuals/Line2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var map : Node2D = $/root/game/map
 
 
 
@@ -45,7 +46,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if not available or not event.is_action_pressed("left_mouse") :
 		return
 	
-	get_parent().get_parent().get_parent().lock_all_rooms()
+	map.lock_all_rooms()
 	room.selected = true
 	animation_player.play("select")
 

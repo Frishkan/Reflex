@@ -6,18 +6,19 @@ var hits := 0
 var misses := 0
 var global_card_stats : Array
 
+@onready var container : Node2D = $HitsContainer
 
 func start(card_stats : Array):
 	global_card_stats = card_stats
 	for i in card_stats[0] :
 		var new_hit = HIT.instantiate()
 		new_hit.speed = card_stats[1]
-		$HitsContainer.add_child(new_hit)
+		container.add_child(new_hit)
 		await get_tree().create_timer(randf_range(0.3, 1.2)).timeout
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("space") :
-		for hit in $HitsContainer.get_children() :
+		for hit in container.get_children() :
 			if hit.currently_in_area :
 				hit.queue_free()
 				hits += 1
@@ -32,7 +33,7 @@ func _on_hit_area_body_exited(body: CharacterBody2D) -> void:
 
 
 func _on_hits_container_child_exiting_tree(_node: Node) -> void:
-	if $HitsContainer.get_child_count() <= 1 && counter == global_card_stats[0]:
+	if container.get_child_count() <= 1 && counter == global_card_stats[0]:
 		var effect_strenght = [hits, misses]
 		CardsLibrary.effect_strenght = effect_strenght
 		Events.qte_ended.emit()

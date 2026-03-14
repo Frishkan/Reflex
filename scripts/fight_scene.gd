@@ -6,16 +6,20 @@ const REWARDS = preload("res://scenes/rewards.tscn")
 @onready var enemies_node : Node2D = %Enemies
 @onready var hero_sprite : Sprite2D = $Hero/Sprite2D
 @onready var hud : Node2D = $/root/game/hud
+@onready var cards : Node2D = $/root/game/hud/Hand/Cards
+@onready var hand : Node2D = $/root/game/hud/Hand
+@onready var qtes : Node2D = $QTEs
 
 var exited_by_button = false
 var room_type : Room.Type
 var effect_strenght : Array
-
+var turn_endable := true
 var choosen_enemy : int = 0
 
 func _ready() -> void:
 	Events.card_played.connect(_card_played)
-	get_parent().get_child(0).get_child(1).redraw(Singleton.cards_count_in_hand_per_draw)
+	Events.enemy_turn_ended.connect(_enemy_turn_ended)
+	hand.redraw(Singleton.cards_count_in_hand_per_draw)
 	match Singleton.character :
 		1 :
 			hero_sprite.texture = preload("res://textures/character_1.png")
@@ -51,3 +55,18 @@ func defend(result : int) :
 
 func debuff(type : int, turns : int) : ## 0=weak,1=vulneruble,2=burn,3=poison,4=confuse
 	pass
+
+func _on_end_turn_button_pressed() -> void:
+	if turn_endable && !qtes.qte_active :
+		turn_endable = false
+		for card in Singleton.deck[3] :
+			print(Singleton.deck)
+			Singleton.deck[1].append(card)
+		Singleton.deck[3].clear()
+		for card in cards.get_children() :
+			card.queue_free()
+			await get_tree().create_timer(0.1).timeout
+		Events.turn_ended.emit()
+
+func _enemy_turn_ended() :
+	turn_endable = true

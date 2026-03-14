@@ -8,6 +8,10 @@ var ICONS := [
 	[preload("res://icon.svg"), "pick a card"]
 ]
 
+@onready var hud : Node2D = $/root/game/hud
+@onready var map : Node2D = $/root/game/map
+@onready var cards : Node2D = $/root/game/hud/Hand/Cards
+
 var defeated_room = 0
 @export var offset = 40
 
@@ -48,16 +52,14 @@ func start(room : Room.Type) :
 
 func _on_continue_button_pressed() -> void:
 	if defeated_room == 6 :
-		$/root/game/map.generate_new_map()
-		$/root/game/map.unlock_floor(0)
+		map.generate_new_map()
+		map.unlock_floor(0)
+	map.show_map()
+	map.unlock_next_rooms()
 	
-	$/root/game/map.show_map()
-	$/root/game/map.unlock_next_rooms()
+	hud.visible = false
 	
-	$/root/game/hud.visible = false
-	
-	for i in $/root/game/hud/Hand/Cards.get_child_count() : ## clears memory
-		$/root/game/hud/Hand/Cards.get_child(i).queue_free()
-	
+	for card in cards.get_children() : ## clears memory
+		card.queue_free()
 	$/root/game/FightScene.queue_free()
 	queue_free()

@@ -5,7 +5,7 @@ extends Node
 func character_choosen() : ## starter cards, [Card.Name, upgraded : int]
 	match Singleton.character : 
 		1: 
-			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENCE, 1], [Card.Name.SOLO, 1], [Card.Name.SKILLFULL_BARRAGE, 0]]
+			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENSE, 1], [Card.Name.SOLO, 1], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		2:
 			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		3:
@@ -17,7 +17,7 @@ func character_choosen() : ## starter cards, [Card.Name, upgraded : int]
 const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short description", "long description", preload(QTE_icon)]
 	Card.Name.KNIFE: [preload("res://textures/knife_card.png"), Vector2(1, 1), "Knife", "Deals ok damage, has no miss penalty. Uses knife QTE.", preload("res://icon.svg")],
 	Card.Name.SKILLFULL_BARRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Skillfull barrage", "Deals massive damage, but has big miss penalty. Uses guitar hero QTE.", preload("res://icon.svg")],
-	Card.Name.DEFENCE: [preload("res://icon.svg"), Vector2(1, 1), "Defence", "Gain defence.", preload("res://icon.svg")],
+	Card.Name.DEFENSE: [preload("res://icon.svg"), Vector2(1, 1), "Defence", "Gain defence.", preload("res://icon.svg")],
 	Card.Name.FIREBALL: [preload("res://icon.svg"), Vector2(1, 1), "Fireball", "Damage an enemy and inflict burn. Uses guitar hero QTE.", preload("res://icon.svg")],
 	Card.Name.SOLO: [preload("res://icon.svg"), Vector2(1, 1), "Solo", "Damages and confuses all enemies. Uses guitar QTE.", preload("res://icon.svg")],
 }
@@ -25,15 +25,15 @@ const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short descri
 const STATS := { ## NAME[base[effect, hits, miss_penalty, speed], upgrade[effect, hits, miss_penalty, speed], "special effects", needs_choosing]
 	Card.Name.KNIFE: [[20, 5, 0, 300], [2, 7, 0, 300], "DEBUGGING", 1], ## 10X damage
 	Card.Name.SKILLFULL_BARRAGE: [[4, 8, 2, 400], [6, 10, 2, 400], "", 1],
-	Card.Name.DEFENCE: [[8, 0, 0, 0], [10, 0, 0, 0], "Defence", 0],
+	Card.Name.DEFENSE: [[8, 0, 0, 0], [10, 0, 0, 0], "Defense", 0],
 	Card.Name.FIREBALL: [[2, 12, 0, 400], [3, 12, 0, 400], "Ignite", 1],
-	Card.Name.SOLO: [[2, 2, 4, 200], [3, 2, 4, 200], "AOE Confuse", 0], ## uses guitar, miss = chords
+	Card.Name.SOLO: [[1, 2, 4, 200], [2, 2, 4, 200], "AOE Confuse", 0], ## uses guitar, miss_penalty = chords
 }
 
 const FUNCTIONS := {
 	Card.Name.KNIFE: ["knife"],
 	Card.Name.SKILLFULL_BARRAGE: ["skillfull_barrage"],
-	Card.Name.DEFENCE: ["defence"],
+	Card.Name.DEFENSE: ["defense"],
 	Card.Name.FIREBALL: ["fireball"],
 	Card.Name.SOLO: ["solo"],
 }
@@ -57,8 +57,8 @@ func skillfull_barrage(upgraded : int) :
 	await Events.qte_ended
 	$/root/game/FightScene.damage(effect_strenght[0] * carray[0] - effect_strenght[1] * carray[2])
 
-func defence(upgraded : int) :
-	var carray = STATS[Card.Name.DEFENCE][upgraded]
+func defense(upgraded : int) :
+	var carray = STATS[Card.Name.DEFENSE][upgraded]
 	$/root/game/FightScene.defend(carray[0])
 
 func fireball(upgraded : int) :
@@ -66,11 +66,11 @@ func fireball(upgraded : int) :
 	$/root/game/FightScene/QTEs.guitar_hero([carray[1], carray[3]])
 	await Events.qte_ended
 	$/root/game/FightScene.damage(effect_strenght[0] * carray[0] - effect_strenght[1] * carray[2])
-	$/root/game/FightScene.debuff(2, 4) ## burn
+	$/root/game/FightScene.debuff("burn", 4) 
 
 func solo(upgraded : int) :
 	var carray = STATS[Card.Name.SOLO][upgraded]
 	$/root/game/FightScene/QTEs.guitar([carray[3], carray[2], carray[1]])
 	await Events.qte_ended
 	$/root/game/FightScene.damage_all(effect_strenght[0] * carray[0] - effect_strenght[1] * 2)
-	$/root/game/FightScene.debuff(5, 1) ## confuse
+	$/root/game/FightScene.debuff_all("confuse", 1) 

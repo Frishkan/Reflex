@@ -43,24 +43,35 @@ func _on_enemies_child_exiting_tree(_node: Node) -> void:
 	exited_by_button = false
 
 func damage(result : int) :
-	enemies_node.get_children()[choosen_enemy].update_defence(result * -1)
+	enemies_node.get_children()[choosen_enemy].update_defense(result * -1)
 
 func damage_all(result : int) :
 	for enemy in enemies_node.get_children() :
-		enemy.update_defence(result * -1)
+		enemy.update_defense(result * -1)
 
 func defend(result : int) :
-	Singleton.hero_defence += result
-	hud.update_hero_defence()
+	Singleton.hero_defense += result
+	hud.update_hero_defense()
 
-func debuff(type : int, turns : int) : ## 0=weak,1=vulneruble,2=burn,3=poison,4=confuse
-	pass
+func debuff(type : String, turns : int) :
+	if type != "confuse" :
+		for i in turns :
+			enemies_node.get_children()[choosen_enemy].add_effect(type)
+	else : 
+		enemies_node.get_children()[choosen_enemy].get_child(6).confused_intent()
+
+func debuff_all(type : String, turns : int) :
+	for enemy in enemies_node.get_children() :
+		if type != "confuse" :
+			for i in turns :
+				enemy.add_effect(type)
+		else : 
+			enemy.get_child(6).confused_intent()
 
 func _on_end_turn_button_pressed() -> void:
 	if turn_endable && !qtes.qte_active :
 		turn_endable = false
 		for card in Singleton.deck[3] :
-			print(Singleton.deck)
 			Singleton.deck[1].append(card)
 		Singleton.deck[3].clear()
 		for card in cards.get_children() :

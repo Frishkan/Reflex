@@ -45,13 +45,13 @@ text = "hp"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Defence" type="Sprite2D" parent="." unique_id=1242232302]
+[node name="Defense" type="Sprite2D" parent="." unique_id=1242232302]
 visible = false
 position = Vector2(16.875, 47.1744)
 scale = Vector2(0.107422, 0.101358)
 texture = ExtResource("2_4376n")
 
-[node name="DefenceNumber" type="Label" parent="." unique_id=2090559967]
+[node name="DefenseNumber" type="Label" parent="." unique_id=2090559967]
 visible = false
 offset_left = -8.0
 offset_top = 40.0
@@ -66,7 +66,7 @@ clip_text = true
 scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=534308455]
-position = Vector2(0, -1)
+position = Vector2(0, -12)
 texture = ExtResource("2_4376n")
 
 [node name="Intents" type="Node2D" parent="." unique_id=1573474032]
@@ -86,5 +86,12 @@ offset_right = 20.0
 offset_bottom = 13.0
 text = "test"
 horizontal_alignment = 1
+
+[node name="EffectContainer" type="GridContainer" parent="." unique_id=804557531]
+offset_left = -32.0
+offset_top = 26.0
+offset_right = 32.0
+offset_bottom = 40.0
+columns = 8
 
 [connection signal="input_event" from="ClickDetector" to="." method="_on_click_detector_input_event"]

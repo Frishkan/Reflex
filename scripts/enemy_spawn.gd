@@ -83,7 +83,8 @@ func setup_weights() -> void :
 
 func enemy_turn() :
 	for e in get_child_count() :
-		get_children()[get_child_count()-1-e].update_defence(get_children()[get_child_count()-1-e].defence * -1)
+		get_children()[get_child_count()-1-e].use_effects()
+		get_children()[get_child_count()-1-e].update_defense(get_children()[get_child_count()-1-e].defense * -1)
 		get_children()[get_child_count()-1-e].get_child(6).use_intents()
 		await Events.enemy_turned
 	await get_tree().create_timer(0.001).timeout

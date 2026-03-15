@@ -5,8 +5,8 @@ extends Node2D
 @onready var menu : Node2D = $/root/game/menu
 @onready var hp_bar : TextureProgressBar = $Health/HeroHealthBar
 @onready var hp_num : Label = $Health/HeroHealthNumber
-@onready var def : Sprite2D = $Health/HeroDefence
-@onready var def_num : Label = $Health/HeroDefenceNumber
+@onready var def : Sprite2D = $Health/HeroDefense
+@onready var def_num : Label = $Health/HeroDefenseNumber
 @onready var unplayed_button : Button = $Deck/DeckButton
 @onready var played_button : Button = $Deck/DiscardedCardsButton
 
@@ -50,10 +50,10 @@ func update_hero_health() :
 	hp_bar.value = Singleton.hero_health
 	hp_num.text = str(Singleton.hero_health) + " / " + str(Singleton.hero_max_health)
 
-func update_hero_defence() :
-	if Singleton.hero_defence > 0 :
+func update_hero_defense() :
+	if Singleton.hero_defense > 0 :
 		def.visible = true
-		def_num.text = str(Singleton.hero_defence)
+		def_num.text = str(Singleton.hero_defense)
 		def_num.visible = true
 	else :
 		def.visible = false

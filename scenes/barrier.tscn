@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://6vocn722qc5n"]
+
+[ext_resource type="Script" uid="uid://ch20x1nwr2vrj" path="res://scripts/barrier.gd" id="1_qfl2k"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_exqad"]
+points = PackedVector2Array(0, 0, 5, -1, 5, 6, 0, 5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qfl2k"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8ilpk"]
+
+[node name="Area2D" type="Area2D" unique_id=1986339016]
+script = ExtResource("1_qfl2k")
+metadata/_edit_horizontal_guides_ = [-2.0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=655877127]
+shape = SubResource("ConvexPolygonShape2D_exqad")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1177981084]
+position = Vector2(2.5007505, 2.0053582)
+rotation = 1.5707964
+scale = Vector2(4.995251, 5.125396)
+skew = -0.1972222
+texture = SubResource("PlaceholderTexture2D_qfl2k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1772214159]
+position = Vector2(2.5137193, 3.0068593)
+rotation = 1.5707964
+scale = Vector2(5.0300183, 5.076634)
+skew = 0.1972222
+texture = SubResource("PlaceholderTexture2D_8ilpk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

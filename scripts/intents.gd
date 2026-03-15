@@ -14,8 +14,8 @@ func start() :
 	show_intents()
 
 func show_intents() :
-	Singleton.hero_defence -= Singleton.hero_defence
-	hud.update_hero_defence()
+	Singleton.hero_defense -= Singleton.hero_defense
+	hud.update_hero_defense()
 	generate_intents_by_type()
 	self.visible = true
 
@@ -56,7 +56,7 @@ func big_attack_intent() :
 		intent_value.text = str(value[1])
 func defend_intent() :
 	intent_icon.texture = preload("res://icon.svg")
-	value = [1, randi_range(5, 20), "defence"]
+	value = [1, randi_range(5, 20), "defense"]
 	intent_value.text = str(value[1])
 func buff_self_intent() :
 	intent_icon.texture = preload("res://icon.svg")
@@ -83,19 +83,19 @@ func use_intents() :
 	match value[2] :
 		"damage" : 
 			for hits in value[0] : 
-				Singleton.hero_defence -= value[1]
-				if Singleton.hero_defence <= 0 :
-					Singleton.hero_health += (Singleton.hero_defence)
-					Singleton.hero_defence = 0
+				Singleton.hero_defense -= value[1]
+				if Singleton.hero_defense <= 0 :
+					Singleton.hero_health += (Singleton.hero_defense)
+					Singleton.hero_defense = 0
 					hud.update_hero_health()
-				hud.update_hero_defence()
+				hud.update_hero_defense()
 				var dmg_num = player_dmg_number.instantiate() as DMGNumber
 				dmg_number_container.add_child(dmg_num)
 				dmg_num.start(value[1])
 				await get_tree().create_timer(0.5).timeout
-		"defence" :
-			get_parent().defence += value[1]
-			get_parent().update_defence(0)
+		"defense" :
+			get_parent().defense += value[1]
+			get_parent().update_defense(0)
 		"buff_self" :
 			print("matched buff self on use")
 		"buff_others" :
@@ -105,7 +105,8 @@ func use_intents() :
 		"confused" :
 			print("matched confused on use")
 		"retreat" :
-			print("matched confused on use")
+			print("matched retreat on use")
+			get_parent().queue_free()
 	await get_tree().create_timer(0.5).timeout
 	Events.enemy_turned.emit()
 	self.visible = false

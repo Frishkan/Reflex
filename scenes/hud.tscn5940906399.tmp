@@ -109,7 +109,9 @@ icon = ExtResource("7_skhmv")
 flat = true
 expand_icon = true
 
-[node name="DeckCards" type="Node2D" parent="Deck" unique_id=560495412]
+[node name="DeckCards" type="GridContainer" parent="Deck" unique_id=298347113]
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("5_xm5f8")
 
 [node name="Health" type="Node2D" parent="." unique_id=651059254]

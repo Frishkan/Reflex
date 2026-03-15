@@ -1,6 +1,6 @@
 extends Node
 
-var hero_defence : int = 0
+var hero_defense : int = 0
 var hero_health : int
 var hero_max_health : int
 

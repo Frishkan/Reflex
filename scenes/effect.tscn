@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bhat5at7ggkwu"]
+
+[ext_resource type="Texture2D" uid="uid://dkhqunat0fsh" path="res://icon.svg" id="1_75f6q"]
+
+[node name="Effect" type="Control" unique_id=1394914355]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 32.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1279995412]
+position = Vector2(15.999999, 16)
+scale = Vector2(0.24999999, 0.24999999)
+texture = ExtResource("1_75f6q")
+
+[node name="Label" type="Label" parent="." unique_id=20764292]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 32.0
+vertical_alignment = 2

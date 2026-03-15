@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b0ikg70u0mlik"]
+
+[ext_resource type="Script" uid="uid://ddeir85txn2i4" path="res://scripts/evade_qte.gd" id="1_wfnch"]
+[ext_resource type="Texture2D" uid="uid://dkhqunat0fsh" path="res://icon.svg" id="2_u5l5q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkqnx"]
+radius = 15.033297
+
+[node name="EvadeQTE" type="Node2D" unique_id=219424685]
+script = ExtResource("1_wfnch")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419633618]
+position = Vector2(64, 64)
+texture = ExtResource("2_u5l5q")
+
+[node name="Dot" type="CharacterBody2D" parent="." unique_id=1017761220]
+position = Vector2(64, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dot" unique_id=1652610483]
+shape = SubResource("CircleShape2D_fkqnx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dot" unique_id=2045393294]
+scale = Vector2(0.1875, 0.1953125)
+texture = ExtResource("2_u5l5q")
+
+[node name="HitContainer" type="Node2D" parent="." unique_id=481626395]

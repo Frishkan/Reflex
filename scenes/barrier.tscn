@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ch20x1nwr2vrj" path="res://scripts/barrier.gd" id="1_qfl2k"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_exqad"]
-points = PackedVector2Array(0, 0, 5, -1, 5, 6, 0, 5)
+points = PackedVector2Array(0, 0, -5, -1, -5, 5, 0, 4)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qfl2k"]
 
@@ -14,19 +14,20 @@ script = ExtResource("1_qfl2k")
 metadata/_edit_horizontal_guides_ = [-2.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=655877127]
+position = Vector2(0, -2)
 shape = SubResource("ConvexPolygonShape2D_exqad")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1177981084]
-position = Vector2(2.5007505, 2.0053582)
+position = Vector2(-2.5268936, 0.5063104)
 rotation = 1.5707964
-scale = Vector2(4.995251, 5.125396)
+scale = Vector2(3.9990742, 5.1423244)
 skew = -0.1972222
 texture = SubResource("PlaceholderTexture2D_qfl2k")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1772214159]
-position = Vector2(2.5137193, 3.0068593)
+position = Vector2(-2.5351925, -0.5023205)
 rotation = 1.5707964
-scale = Vector2(5.0300183, 5.076634)
+scale = Vector2(4.0371575, 5.144349)
 skew = 0.1972222
 texture = SubResource("PlaceholderTexture2D_8ilpk")
 

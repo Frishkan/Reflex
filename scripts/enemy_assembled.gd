@@ -9,7 +9,7 @@ extends Node2D
 @onready var intents : Node2D = $Intents
 @onready var enemy_hp_num : Label = $EnemyHealthNumber
 @onready var effect_container : GridContainer = $EffectContainer
-@onready var effect_item := preload("res://scenes/effect.tscn")
+@onready var EFFECT_ITEM := preload("res://scenes/effect.tscn")
 
 var index : int
 var health : int
@@ -68,6 +68,10 @@ func add_effect(type : String) :
 			effects[4] += 1
 		"defensive" :
 			effects[5] += 1
+		"placeholder1" :
+			effects[6] += 1
+		"placeholder2" :
+			effects[7] += 1
 	update_effects()
 
 func update_effects() :
@@ -76,7 +80,7 @@ func update_effects() :
 			child.queue_free()
 	for effect in effects.size() :
 		if effects[effect] != 0 :
-			var current_effect_item = effect_item.instantiate() as Control
+			var current_effect_item = EFFECT_ITEM.instantiate() as Control
 			match effect : ## adding sprite
 				0 :
 					current_effect_item.get_child(0).texture = preload("res://icon.svg")

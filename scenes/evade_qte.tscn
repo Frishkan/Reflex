@@ -10,11 +10,12 @@ radius = 15.033297
 script = ExtResource("1_wfnch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419633618]
-position = Vector2(64, 64)
+position = Vector2(75, 75)
+scale = Vector2(1.171875, 1.171875)
 texture = ExtResource("2_u5l5q")
 
 [node name="Dot" type="CharacterBody2D" parent="." unique_id=1017761220]
-position = Vector2(64, 16)
+position = Vector2(72, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dot" unique_id=1652610483]
 shape = SubResource("CircleShape2D_fkqnx")
@@ -24,3 +25,4 @@ scale = Vector2(0.1875, 0.1953125)
 texture = ExtResource("2_u5l5q")
 
 [node name="HitContainer" type="Node2D" parent="." unique_id=481626395]
+position = Vector2(72, 72)

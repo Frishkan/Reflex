@@ -15,6 +15,7 @@ var room_type : Room.Type
 var effect_strenght : Array
 var turn_endable := true
 var choosen_enemy : int = 0
+var effects : Array = [0, 0, 0, 0, 0, 0, 0, 0] ## [weak, voulnerable, placeholder, placeholder, strenght, defensive, placeholder, placeholder]
 
 func _ready() -> void:
 	Events.card_played.connect(_card_played)
@@ -42,15 +43,35 @@ func _on_enemies_child_exiting_tree(_node: Node) -> void:
 			add_child.call_deferred(rewards_scene)
 	exited_by_button = false
 
+func add_effect(type : String, turns : int) :
+	match type : 
+		"weak" :
+			effects[0] += turns
+		"voulnerable" :
+			effects[1] += turns
+		"placeholder1" :
+			effects[2] += turns
+		"placeholder2" :
+			effects[3] += turns
+		"strenght" :
+			effects[4] += turns
+		"defensive" :
+			effects[5] += turns
+		"placeholder3" :
+			effects[6] += turns
+		"placeholder4" :
+			effects[7] += turns
+	hud.update_hero_effects()
+
 func damage(result : int) :
-	enemies_node.get_children()[choosen_enemy].update_defense(result * -1)
+	enemies_node.get_children()[choosen_enemy].update_defense(clamp(result, 0, 999999999) * -1)
 
 func damage_all(result : int) :
 	for enemy in enemies_node.get_children() :
-		enemy.update_defense(result * -1)
+		enemy.update_defense(clamp(result, 0, 999999999) * -1)
 
 func defend(result : int) :
-	Singleton.hero_defense += result
+	Singleton.hero_defense += clamp(result, 0, 999999999)
 	hud.update_hero_defense()
 
 func debuff(type : String, turns : int) :
@@ -80,4 +101,8 @@ func _on_end_turn_button_pressed() -> void:
 		Events.turn_ended.emit()
 
 func _enemy_turn_ended() :
+	for effect in effects.size() :
+		if effects[effect] != 0 :
+			effects[effect] -= 1
+	hud.update_hero_effects()
 	turn_endable = true

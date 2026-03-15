@@ -4,6 +4,7 @@ const KNIFE_QTE = preload("res://scenes/knife_qte.tscn")
 const GUITAR_HERO_QTE = preload("res://scenes/guitar_hero_qte.tscn")
 const TIMING_CIRCLE_QTE = preload("res://scenes/timing_circle_qte.tscn")
 const GUITAR_QTE = preload("res://scenes/guitar.tscn")
+const EVADE_QTE = preload("res://scenes/evade_qte.tscn")
 var qte_active := false
 
 func knife(card_stats : Array): ## [speed, amount of hits]
@@ -32,3 +33,10 @@ func guitar(card_stats : Array) : ## [speed, chords, hits per chord]
 	guitar_qte.position = Vector2(-130, -100)
 	add_child(guitar_qte)
 	guitar_qte.start(card_stats)
+
+func evade(card_stats : Array) : ## [speed, time, barriers]
+	qte_active = true
+	var evade_qte = EVADE_QTE.instantiate()
+	evade_qte.position = Vector2(-130, -100)
+	add_child(evade_qte)
+	evade_qte.start(card_stats)

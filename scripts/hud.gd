@@ -9,6 +9,9 @@ extends Node2D
 @onready var def_num : Label = $Health/HeroDefenseNumber
 @onready var unplayed_button : Button = $Deck/DeckButton
 @onready var played_button : Button = $Deck/DiscardedCardsButton
+@onready var hero_effects_grid : GridContainer = $Health/HeroEffects
+
+@onready var EFFECT_ITEM := preload("res://scenes/effect.tscn")
 
 var upgrading := false
 
@@ -58,3 +61,29 @@ func update_hero_defense() :
 	else :
 		def.visible = false
 		def_num.visible = false
+
+func update_hero_effects() :
+	for effect in hero_effects_grid.get_children() :
+		effect.queue_free()
+	for effect in $/root/game/FightScene.effects.size() :
+		if $/root/game/FightScene.effects[effect] != 0 :
+			var current_effect_item = EFFECT_ITEM.instantiate() as Control
+			match effect :
+				0 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				1 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				2 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				3 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				4 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				5 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				6 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+				7 :
+					current_effect_item.get_child(0).texture = preload("res://icon.svg")
+			current_effect_item.get_child(1).text = str($/root/game/FightScene.effects[effect])
+			hero_effects_grid.add_child(current_effect_item)

@@ -1,7 +1,7 @@
 class_name Card
 extends Resource
 
-enum Name {KNIFE, SKILLFULL_BARRAGE, DEFENSE, FIREBALL, SOLO}
+enum Name {KNIFE, SKILLFULL_BARRAGE, DEFENSE, FIREBALL, SOLO, ENRAGE}
 
 var name : Name
 var position : Vector2

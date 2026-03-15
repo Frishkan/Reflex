@@ -5,7 +5,7 @@ extends Node
 func character_choosen() : ## starter cards, [Card.Name, upgraded : int]
 	match Singleton.character : 
 		1: 
-			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENSE, 1], [Card.Name.SOLO, 1], [Card.Name.SKILLFULL_BARRAGE, 0]]
+			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.DEFENSE, 1], [Card.Name.SOLO, 1], [Card.Name.SKILLFULL_BARRAGE, 0], [Card.Name.ENRAGE, 0]]
 		2:
 			Singleton.deck[0] = [[Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.KNIFE, 0], [Card.Name.SKILLFULL_BARRAGE, 0]]
 		3:
@@ -20,6 +20,7 @@ const ICONS := { ## NAME[preload(texture), Vector2(scale), "name", "short descri
 	Card.Name.DEFENSE: [preload("res://icon.svg"), Vector2(1, 1), "Defence", "Gain defence.", preload("res://icon.svg")],
 	Card.Name.FIREBALL: [preload("res://icon.svg"), Vector2(1, 1), "Fireball", "Damage an enemy and inflict burn. Uses guitar hero QTE.", preload("res://icon.svg")],
 	Card.Name.SOLO: [preload("res://icon.svg"), Vector2(1, 1), "Solo", "Damages and confuses all enemies. Uses guitar QTE.", preload("res://icon.svg")],
+	Card.Name.ENRAGE: [preload("res://icon.svg"), Vector2(1, 1), "Enrage", "Gives you strenght. Uses evade QTE.", preload("res://icon.svg")],
 }
 
 const STATS := { ## NAME[base[effect, hits, miss_penalty, speed], upgrade[effect, hits, miss_penalty, speed], "special effects", needs_choosing]
@@ -28,6 +29,7 @@ const STATS := { ## NAME[base[effect, hits, miss_penalty, speed], upgrade[effect
 	Card.Name.DEFENSE: [[8, 0, 0, 0], [10, 0, 0, 0], "Defense", 0],
 	Card.Name.FIREBALL: [[2, 12, 0, 400], [3, 12, 0, 400], "Ignite", 1],
 	Card.Name.SOLO: [[1, 2, 4, 200], [2, 2, 4, 200], "AOE Confuse", 0], ## uses guitar, miss_penalty = chords
+	Card.Name.ENRAGE: [[3, 10, 10, 50], [2, 2, 4, 200], "Strenght", 0], ## uses evade, miss_penalty = barriers, hits = time
 }
 
 const FUNCTIONS := {
@@ -36,6 +38,7 @@ const FUNCTIONS := {
 	Card.Name.DEFENSE: ["defense"],
 	Card.Name.FIREBALL: ["fireball"],
 	Card.Name.SOLO: ["solo"],
+	Card.Name.ENRAGE: ["enrage"],
 }
 
 ## Card :
@@ -74,3 +77,11 @@ func solo(upgraded : int) :
 	await Events.qte_ended
 	$/root/game/FightScene.damage_all(effect_strenght[0] * carray[0] - effect_strenght[1] * 2)
 	$/root/game/FightScene.debuff_all("confuse", 1) 
+
+func enrage(upgraded : int) :
+	var carray = STATS[Card.Name.ENRAGE][upgraded]
+	$/root/game/FightScene/QTEs.evade([carray[3], carray[1], carray[2]])
+	await Events.qte_ended
+	$/root/game/FightScene.damage_all(effect_strenght[0] * carray[0] - effect_strenght[1])
+	$/root/game/FightScene.add_effect("strenght", 3) 
+	$/root/game/FightScene.add_effect("weak", 3) 

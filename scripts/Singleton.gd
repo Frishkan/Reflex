@@ -4,11 +4,8 @@ var hero_defense : int = 0
 var hero_health : int
 var hero_max_health : int
 
-## 						0 - unplayed
-## 						1 - played
-## 						2 - voided
-## 						3 - hand
-var deck : Array[Array] = [[],[],[],[]]
+var deck : Array[Array] = [[],[],[],[]] ## [unplayed, played, voided, hand]
+var items : Array[String] = []
 var cards_count_in_hand_per_draw : int
 var character : int
 

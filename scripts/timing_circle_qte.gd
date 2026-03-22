@@ -17,7 +17,7 @@ func start(card_stats : Array) -> void:
 			add_child(hit)
 			var hit_rand_pos : float = randf_range(-1, 1)
 			hit.position = Vector2(sin(hit_rand_pos * PI) * radius, cos(hit_rand_pos * PI) * radius) + offset
-			hit.look_at(offset)
+			hit.look_at(global_position + offset)
 		for hits in local_card_stats[1] :
 			await Events.circle_qte_hit
 

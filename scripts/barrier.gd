@@ -4,7 +4,7 @@ extends Area2D
 
 func _process(delta: float) -> void:
 	self.translate(Vector2(0, parent.local_card_stats[0] * delta).rotated(rotation))
-	look_at(parent.offset)
+	look_at(parent.global_position + parent.offset)
 
 
 func _on_body_entered(body: Node2D) -> void:

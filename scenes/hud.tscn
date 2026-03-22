@@ -147,12 +147,8 @@ offset_bottom = 14.200001
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="HeroEffects" type="GridContainer" parent="Health" unique_id=229092882]
-offset_left = -101.0
-offset_top = -37.0
-offset_right = 99.0
-offset_bottom = -13.0
-columns = 8
+[node name="HeroEffects" type="Node2D" parent="Health" unique_id=1831882952]
+position = Vector2(-101, -29)
 
 [connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
 [connection signal="toggled" from="Deck/DeckButton" to="." method="_on_deck_button_toggled"]

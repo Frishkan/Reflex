@@ -8,8 +8,9 @@ extends Node2D
 @onready var enemy_bar : TextureProgressBar = $EnemyHealthBar
 @onready var intents : Node2D = $Intents
 @onready var enemy_hp_num : Label = $EnemyHealthNumber
-@onready var effect_container : GridContainer = $EffectContainer
+@onready var effect_container : Node2D = $EffectContainer
 @onready var EFFECT_ITEM := preload("res://scenes/effect.tscn")
+@onready var selector : Sprite2D = $Selector
 
 var index : int
 var health : int
@@ -43,13 +44,16 @@ func update_health(new_health : int) :
 		queue_free()
 
 func update_defense(value : int) :
-	if defense + value <= 0 : ## defense broken
-		update_health(health + (defense + value))
+	var dmg : int = value
+	if effects[1] > 0 : ## voulnerable check
+		dmg += value * 0.5
+	if defense + dmg <= 0 : ## defense broken
+		update_health(health + (defense + dmg))
 		defense = 0
 		def_sprite.visible = false
 		def_num.visible = false
 	else : ## new defense
-		defense += value
+		defense += dmg
 		def_sprite.visible = true
 		def_num.text = str(defense)
 		def_num.visible = true
@@ -75,6 +79,7 @@ func add_effect(type : String) :
 	update_effects()
 
 func update_effects() :
+	var counter : int = 0
 	if effect_container.get_child_count() != 0 :
 		for child in effect_container.get_children() :
 			child.queue_free()
@@ -99,24 +104,27 @@ func update_effects() :
 				7 :
 					current_effect_item.get_child(0).texture = preload("res://icon.svg")
 			current_effect_item.get_child(1).text = str(effects[effect])
+			current_effect_item.scale = Vector2(0.5, 0.5)
+			current_effect_item.position = Vector2(counter * 20, 0)
+			counter += 1
 			effect_container.add_child(current_effect_item)
 
 func use_effects() :
 	for effect in effects.size() :
 		if effects[effect] != 0 :
-			match effect : ## the functionality of effects
+			match effect : ## the functionality of effects (at least the active ones)
 				0 :
-					pass
+					pass ## weak
 				1 :
-					pass
+					pass ## voulnerable
 				2 :
-					pass
+					update_defense(-5) ## burn
 				3 :
-					pass
+					update_health(health - effects[3]) ## poison
 				4 :
-					pass
+					pass ## strenght
 				5 :
-					pass
+					pass ## defensive
 				6 :
 					pass
 				7 :
@@ -128,3 +136,12 @@ func _on_click_detector_input_event(_viewport: Node, event: InputEvent, _shape_i
 	if event.is_action_pressed("left_mouse") :
 		fight_scene.choosen_enemy = get_parent().get_children().find(self)
 		Events.choosed_enemy_index.emit()
+		selector.hide()
+		fight_scene.card_choosing = 0
+
+func _on_click_detector_mouse_entered() -> void:
+	if fight_scene.card_choosing != 0 :
+		selector.show()
+
+func _on_click_detector_mouse_exited() -> void:
+	selector.hide()

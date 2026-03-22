@@ -7,6 +7,7 @@ extends Control
 @onready var qte_icon : Sprite2D = $QTEIcon
 @onready var hud : Node2D = $/root/game/hud
 @onready var qtes : Node2D = $/root/game/FightScene/QTEs
+@onready var fight_scene : Node2D = $/root/game/FightScene
 
 var card : Card : set = set_card 
 var index : int
@@ -29,6 +30,10 @@ func set_card(new_card: Card) : ##!!
 	name_label.text = icons[2]
 	qte_icon.texture = icons[4]
 	short_desc.text = str(stats[hand_last[1]][0])
+	if fight_scene.effects[0] > 0 : ## weak check
+		short_desc.text = str(int(stats[hand_last[1]][0] * 0.75))
+	if fight_scene.effects[4] > 0 : ## strenght check
+		short_desc.text = str(int(stats[hand_last[1]][0] * 1.25))
 	if stats[hand_last[1]][1] != 0 :
 		short_desc.text += " * " + str(stats[hand_last[1]][1])
 		if stats[hand_last[1]][2] != 0 :
@@ -43,19 +48,22 @@ func set_card(new_card: Card) : ##!!
 
 func _on_mouse_entered() -> void:
 	self.scale = self.scale * 1.5
-	self.position += - Vector2(40, 80)
+	self.position -= Vector2(40, 80)
 	self.z_index += 1
 
 func _on_mouse_exited() -> void:
 	self.scale = self.scale / 1.5
-	self.position += + Vector2(40, 80)
-	self.z_index += - 1
+	self.position += Vector2(40, 80)
+	self.z_index -= 1
 
 func _on_input_event(event: InputEvent) -> void: ##!!
 	if event.is_action_pressed("left_mouse") && hud.upgrading :
 		Singleton.deck[0][index][1] = 1
-	elif event.is_action_pressed("left_mouse") && !qtes.qte_active && is_usable_in_hand:
+	elif event.is_action_pressed("left_mouse") && !qtes.qte_active && is_usable_in_hand && !fight_scene.card_choosing:
 		if needs_choosing :
+			fight_scene.card_choosing = 1
+			position.y -= 40
+			z_index += 2
 			await Events.choosed_enemy_index
 		Events.card_played.emit(self)
 		queue_free()

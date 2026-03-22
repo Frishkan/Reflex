@@ -15,7 +15,8 @@ var room_type : Room.Type
 var effect_strenght : Array
 var turn_endable := true
 var choosen_enemy : int = 0
-var effects : Array = [0, 0, 0, 0, 0, 0, 0, 0] ## [weak, voulnerable, placeholder, placeholder, strenght, defensive, placeholder, placeholder]
+var card_choosing : int = 0
+var effects : Array = [0, 0, 0, 0, 0, 0, 0, 0] ## [weak, voulnerable, placeholder?, placeholder?, strenght, defensive, placeholder?, placeholder?]
 
 func _ready() -> void:
 	Events.card_played.connect(_card_played)
@@ -64,11 +65,21 @@ func add_effect(type : String, turns : int) :
 	hud.update_hero_effects()
 
 func damage(result : int) :
-	enemies_node.get_children()[choosen_enemy].update_defense(clamp(result, 0, 999999999) * -1)
+	var dmg = clamp(result, 0, 999999999)
+	if effects[0] > 0 : ## weak check
+		dmg -= dmg * 0.25
+	if effects[4] > 0 : ## strenght check
+		dmg += dmg * 0.25
+	enemies_node.get_children()[choosen_enemy].update_defense(dmg * -1)
 
 func damage_all(result : int) :
+	var dmg = clamp(result, 0, 999999999)
+	if effects[0] > 0 : ## weak check
+		dmg -= dmg * 0.25
+	if effects[4] > 0 : ## strenght check
+		dmg += dmg * 0.25
 	for enemy in enemies_node.get_children() :
-		enemy.update_defense(clamp(result, 0, 999999999) * -1)
+		enemy.update_defense(dmg * -1)
 
 func defend(result : int) :
 	Singleton.hero_defense += clamp(result, 0, 999999999)
@@ -101,8 +112,31 @@ func _on_end_turn_button_pressed() -> void:
 		Events.turn_ended.emit()
 
 func _enemy_turn_ended() :
+	if effects[5] == 0 :
+		Singleton.hero_defense -= Singleton.hero_defense
+		hud.update_hero_defense()
+	use_effects()
+	turn_endable = true
+
+func use_effects() :
 	for effect in effects.size() :
 		if effects[effect] != 0 :
+			match effect : ## the functionality of effects (at least the active ones)
+				0 :
+					pass ## weak
+				1 :
+					pass ## voulnerable
+				2 :
+					pass
+				3 :
+					pass
+				4 :
+					pass ## strenght
+				5 :
+					pass ## defensive
+				6 :
+					pass
+				7 :
+					pass
 			effects[effect] -= 1
 	hud.update_hero_effects()
-	turn_endable = true

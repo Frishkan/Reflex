@@ -16,6 +16,13 @@ gradient = SubResource("Gradient_hwewx")
 width = 100
 height = 30
 
+[sub_resource type="Gradient" id="Gradient_jmldr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 0.34300002)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o2j4y"]
+gradient = SubResource("Gradient_jmldr")
+
 [node name="EnemyAssembled" type="Node2D" unique_id=50127034]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_l4kvm")
@@ -87,11 +94,15 @@ offset_bottom = 13.0
 text = "test"
 horizontal_alignment = 1
 
-[node name="EffectContainer" type="GridContainer" parent="." unique_id=804557531]
-offset_left = -32.0
-offset_top = 26.0
-offset_right = 32.0
-offset_bottom = 40.0
-columns = 8
+[node name="EffectContainer" type="Node2D" parent="." unique_id=103969081]
+position = Vector2(-24, 24)
+
+[node name="Selector" type="Sprite2D" parent="." unique_id=1612422293]
+visible = false
+position = Vector2(0, -1.0000038)
+scale = Vector2(1, 1.78125)
+texture = SubResource("GradientTexture2D_o2j4y")
 
 [connection signal="input_event" from="ClickDetector" to="." method="_on_click_detector_input_event"]
+[connection signal="mouse_entered" from="ClickDetector" to="." method="_on_click_detector_mouse_entered"]
+[connection signal="mouse_exited" from="ClickDetector" to="." method="_on_click_detector_mouse_exited"]

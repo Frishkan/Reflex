@@ -6,6 +6,24 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkqnx"]
 radius = 15.033297
 
+[sub_resource type="Gradient" id="Gradient_wfnch"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u5l5q"]
+gradient = SubResource("Gradient_wfnch")
+width = 32
+height = 152
+
+[sub_resource type="Gradient" id="Gradient_fkqnx"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.6123244, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1fe6v"]
+gradient = SubResource("Gradient_fkqnx")
+width = 32
+height = 152
+
 [node name="EvadeQTE" type="Node2D" unique_id=219424685]
 script = ExtResource("1_wfnch")
 
@@ -26,3 +44,11 @@ texture = ExtResource("2_u5l5q")
 
 [node name="HitContainer" type="Node2D" parent="." unique_id=481626395]
 position = Vector2(72, 72)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=894120093]
+offset_left = 160.0
+offset_right = 180.0
+offset_bottom = 152.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_u5l5q")
+texture_progress = SubResource("GradientTexture2D_1fe6v")
